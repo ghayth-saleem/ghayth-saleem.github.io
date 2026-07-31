@@ -12,6 +12,7 @@
 <meta property="og:description" content="Personal site of Ghayth Ahmad Rezeq Saleem — a software engineer focused on AI and RAG systems.">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://ghayth-saleem.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2312141c'/%3E%3Ctext x='50' y='68' font-size='58' font-family='monospace' font-weight='700' fill='%23f2836b' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -43,10 +44,29 @@
     --lav: #9b8cf2;
     --mono: 'JetBrains Mono', monospace;
     --sans: 'Cairo', 'Inter', sans-serif;
+    --nav-bg: rgba(18,20,28,0.85);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"]{
+    --bg: #f6f4f0;
+    --bg-raised: #ffffff;
+    --bg-card: #efece5;
+    --line: #e1ddd3;
+    --text: #23262f;
+    --text-dim: #6b7080;
+    --nav-bg: rgba(246,244,240,0.85);
+    color-scheme: light;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+  body{
+    background:
+      radial-gradient(600px circle at 12% -10%, rgba(242,131,107,0.10), transparent 60%),
+      radial-gradient(700px circle at 100% 0%, rgba(95,179,163,0.08), transparent 55%),
+      var(--bg);
+    color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;
+    transition:background-color .3s ease,color .3s ease;
+  }
   ::selection{background:var(--coral);color:var(--bg);}
   a{color:inherit;text-decoration:none;}
   .wrap{max-width:1000px;margin:0 auto;padding:0 28px;}
@@ -55,13 +75,30 @@
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
   }
 
-  nav{position:fixed;top:0;right:0;left:0;z-index:100;background:rgba(18,20,28,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;}
+  nav{position:fixed;top:0;right:0;left:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:background-color .3s ease,border-color .3s ease;}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;gap:18px;}
   .nav-brand{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--text);}
   .nav-brand span{color:var(--coral);}
+  .nav-right{display:flex;align-items:center;gap:22px;margin-left:auto;}
   .nav-links{display:none;gap:28px;font-family:var(--mono);font-size:13px;color:var(--text-dim);}
   .nav-links a:hover{color:var(--teal);}
   @media(min-width:720px){.nav-links{display:flex;}}
+
+  .theme-toggle{
+    display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;
+    border:1px solid var(--line);background:transparent;color:var(--text-dim);cursor:pointer;font-size:15px;transition:.2s;
+  }
+  .theme-toggle:hover{border-color:var(--teal);color:var(--teal);}
+
+  .nav-burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;border:1px solid var(--line);border-radius:8px;background:transparent;cursor:pointer;}
+  .nav-burger span{display:block;height:2px;width:16px;margin:0 auto;background:var(--text-dim);transition:.2s;}
+  @media(min-width:720px){.nav-burger{display:none;}}
+
+  .nav-drawer{display:none;flex-direction:column;gap:2px;padding:10px 0 18px;font-family:var(--mono);font-size:14px;background:var(--bg);}
+  .nav-drawer.open{display:flex;}
+  .nav-drawer a{color:var(--text-dim);padding:10px 4px;border-top:1px dashed var(--line);}
+  .nav-drawer a:hover{color:var(--teal);}
+  @media(min-width:720px){.nav-drawer{display:none !important;}}
 
   header.hero{padding:150px 0 90px;position:relative;}
   .term{background:var(--bg-raised);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,0.6);}
@@ -98,13 +135,16 @@
     border:1px dashed var(--line);border-radius:10px;padding:40px 24px;text-align:center;color:var(--text-dim);
     font-family:var(--mono);font-size:14px;
   }
-  .repo{background:var(--bg-raised);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:16px;transition:.25s;}
-  .repo:hover{border-color:var(--teal);transform:translateY(-3px);}
+  .repo{position:relative;background:var(--bg-raised);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:16px;transition:.25s;overflow:hidden;}
+  .repo::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--coral),var(--teal));opacity:0;transition:.25s;}
+  .repo:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(0,0,0,0.35);}
+  .repo:hover::before{opacity:1;}
   .repo-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
   .repo-name{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--text);}
   .repo-name .path{color:var(--text-dim);font-weight:400;}
   .repo-desc{color:var(--text-dim);font-size:14px;margin:10px 0 14px;max-width:600px;}
-  .repo-meta{display:flex;gap:16px;font-family:var(--mono);font-size:12px;color:var(--text-dim);flex-wrap:wrap;}
+  .repo-meta{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{font-family:var(--mono);font-size:11.5px;color:var(--teal);background:rgba(95,179,163,0.08);border:1px solid rgba(95,179,163,0.25);padding:4px 9px;border-radius:6px;}
   .repo-links{display:flex;gap:14px;font-family:var(--mono);font-size:12px;margin-top:14px;}
   .repo-links a{color:var(--coral);}
   .repo-links a:hover{color:var(--amber);}
@@ -157,7 +197,19 @@
 <nav>
   <div class="wrap">
     <div class="nav-brand">ghayth<span>.dev</span></div>
-    <div class="nav-links">
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle theme">🌙</button>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="nav-drawer" id="navDrawer">
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -218,18 +270,26 @@
     <div id="projectsList">
       <div class="repo reveal in">
         <div class="repo-top">
-          <div class="repo-name">Diabetes Prediction Model</div>
+          <div class="repo-name">Arabic OCR <span class="path">— CRNN + CTC, from scratch</span></div>
         </div>
-        <p class="repo-desc">A machine learning model that predicts diabetes diagnosis using the Pima Indians Diabetes dataset. Includes mean imputation for missing clinical values, hyperparameter tuning with GridSearchCV, and a lowered decision threshold (0.5 → 0.25) to prioritize recall — reducing missed positive cases, which matters most in a medical screening context.</p>
-        <div class="repo-meta"><span>Python / Scikit-learn / Random Forest</span></div>
-        <div class="repo-links"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Source Code →</a></div>
+        <p class="repo-desc">A from-scratch Arabic text-line recognizer: a CNN + BiLSTM feature extractor trained with CTC loss, no pretrained weights and no external OCR engine. Includes a synthetic-data generator, a classical ink-projection line-segmentation step for full scanned pages, and is sized to train end-to-end on a 4GB laptop GPU.</p>
+        <div class="repo-meta"><span class="chip">PyTorch</span><span class="chip">CRNN</span><span class="chip">CTC Loss</span><span class="chip">Computer Vision</span></div>
+        <div class="repo-links"><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Source Code →</a></div>
+      </div>
+      <div class="repo reveal in">
+        <div class="repo-top">
+          <div class="repo-name">Meeting RAG Pipeline <span class="path">— local, self-hosted</span></div>
+        </div>
+        <p class="repo-desc">Turns Arabic/English video meetings into a searchable, growing knowledge base. Every stage — audio extraction, speaker diarization, Whisper transcription, multilingual embeddings, vector storage, and LLM summarization — runs fully locally, with no cloud API calls or keys.</p>
+        <div class="repo-meta"><span class="chip">Whisper</span><span class="chip">pyannote-audio</span><span class="chip">Qdrant</span><span class="chip">Ollama (Qwen2.5)</span></div>
+        <div class="repo-links"><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Source Code →</a></div>
       </div>
       <div class="repo reveal in">
         <div class="repo-top">
           <div class="repo-name">INSIGHT_AI <span class="path">— Graduation Project</span></div>
         </div>
-        <p class="repo-desc">An AI-powered marketing intelligence dashboard that analyzes social media analytics (Instagram) to surface engagement trends, sentiment shifts, and anomalies. Built with a Python backend, custom ML models for evaluation and scoring, and a full frontend dashboard following a dedicated dark-mode design system.</p>
-        <div class="repo-meta"><span>Python / Machine Learning / Dashboard</span></div>
+        <p class="repo-desc">An AI-powered marketing intelligence dashboard that analyzes social media analytics (Instagram) to surface engagement trends, sentiment shifts, and anomalies. Built with a Python/FastAPI backend, custom ML models for evaluation and scoring, and a Next.js frontend dashboard following a dedicated dark-mode design system.</p>
+        <div class="repo-meta"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Next.js</span><span class="chip">Machine Learning</span></div>
         <div class="repo-links"><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">Source Code →</a></div>
       </div>
       <div class="repo reveal in">
@@ -237,8 +297,16 @@
           <div class="repo-name">Al-Fatyan Scout RAG System <span class="path">— نظام محاضر الفتيان</span></div>
         </div>
         <p class="repo-desc">A fully local, offline RAG system for querying Arabic scout troop meeting minutes. Combines section-aware chunking (per meeting, split on the decisions header for longer records), local multilingual embeddings, and a local LLM to answer questions in Arabic or English — every answer cites the exact meeting number and date, and the system explicitly says when it can't find an answer instead of guessing. Ships with a Streamlit chat UI.</p>
-        <div class="repo-meta"><span>Python / Ollama (Qwen2.5) / ChromaDB / Sentence-Transformers / Streamlit</span></div>
+        <div class="repo-meta"><span class="chip">Ollama (Qwen2.5)</span><span class="chip">ChromaDB</span><span class="chip">Sentence-Transformers</span><span class="chip">Streamlit</span></div>
         <div class="repo-links"><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Source Code →</a></div>
+      </div>
+      <div class="repo reveal in">
+        <div class="repo-top">
+          <div class="repo-name">Diabetes Prediction Model</div>
+        </div>
+        <p class="repo-desc">A machine learning model that predicts diabetes diagnosis using the Pima Indians Diabetes dataset. Includes mean imputation for missing clinical values, hyperparameter tuning with GridSearchCV, and a lowered decision threshold (0.5 → 0.25) to prioritize recall — reducing missed positive cases, which matters most in a medical screening context.</p>
+        <div class="repo-meta"><span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">Random Forest</span></div>
+        <div class="repo-links"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Source Code →</a></div>
       </div>
     </div>
     <!-- END PROJECTS -->
@@ -306,6 +374,32 @@
   }
   setTimeout(type, 500);
 
+  // theme toggle (persisted)
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('themeToggle');
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'light' ? '☀️' : '🌙';
+  }
+  applyTheme(localStorage.getItem('theme') || 'dark');
+  themeBtn.addEventListener('click', ()=>{
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+
+  // mobile nav drawer
+  const burger = document.getElementById('navBurger');
+  const drawer = document.getElementById('navDrawer');
+  burger.addEventListener('click', ()=>{
+    const isOpen = drawer.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    drawer.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+  }));
+
   // scroll reveal
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -341,13 +435,16 @@
     if(live) links.push(`<a href="${escapeHtml(live)}" target="_blank" rel="noopener">View Project →</a>`);
     if(repo) links.push(`<a href="${escapeHtml(repo)}" target="_blank" rel="noopener">Source Code →</a>`);
 
+    const chips = tech.split(/[\/,]/).map(t=>t.trim()).filter(Boolean)
+      .map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join('');
+
     const cardHtml =
 `    <div class="repo reveal in">
       <div class="repo-top">
         <div class="repo-name">${escapeHtml(name)}</div>
       </div>
       <p class="repo-desc">${escapeHtml(desc)}</p>
-      <div class="repo-meta"><span>${escapeHtml(tech)}</span></div>
+      <div class="repo-meta">${chips}</div>
       <div class="repo-links">${links.join('\n        ')}</div>
     </div>`;
 
