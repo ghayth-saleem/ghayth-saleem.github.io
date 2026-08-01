@@ -138,7 +138,7 @@
 <section id="work">
   <div class="wrap sec-head">
     <div class="sec-label">// selected work</div>
-    <h2 class="sec-title">Five systems, one throughline</h2>
+    <h2 class="sec-title">Six systems, one throughline</h2>
   </div>
 
   <div class="proj">
@@ -160,7 +160,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">01 / 05 — vision</div>
+        <div class="proj-index">01 / 06 — vision</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Arabic OCR — CRNN + CTC ↗</a></h3>
         <p class="proj-desc">A text-line recognizer for Arabic built entirely from scratch — no pretrained weights, no external OCR engine. A CNN feature extractor feeds a two-layer BiLSTM, trained with CTC loss so no character-level alignment is needed. A synthetic-data generator renders hundreds of thousands of Arabic sentences across random fonts and light augmentation to train it, and a classical ink-projection step segments full scanned pages into individual lines before recognition — sized to train end-to-end on a 4GB laptop GPU.</p>
         <div class="tags"><span>PyTorch</span><span>CRNN</span><span>CTC Loss</span><span>Computer Vision</span></div>
@@ -192,7 +192,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">02 / 05 — speech</div>
+        <div class="proj-index">02 / 06 — speech</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Meeting RAG Pipeline ↗</a></h3>
         <p class="proj-desc">Turns Arabic and English video meetings into a searchable, growing knowledge base — every stage runs on your own machine. Audio is diarized to know who spoke when, transcribed with Whisper, embedded with a multilingual model, and stored in a local Qdrant instance that accumulates across meetings. Ask a question and a local LLM retrieves the relevant chunks and writes the answer, or generates full meeting minutes — no cloud API keys anywhere in the pipeline.</p>
         <div class="tags"><span>Whisper</span><span>pyannote-audio</span><span>Qdrant</span><span>Ollama (Qwen2.5)</span></div>
@@ -220,7 +220,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">03 / 05 — record</div>
+        <div class="proj-index">03 / 06 — record</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Al-Fatyan Scout RAG — نظام محاضر الفتيان ↗</a></h3>
         <p class="proj-desc">A fully offline RAG system built to answer questions over a scout troop's Arabic meeting minutes. Chunking is section-aware — records split on their decisions header so long meetings stay coherent — and a local multilingual embedding model plus a local LLM handle retrieval and generation in Arabic or English. Every answer cites the exact meeting number and date it came from, and the system says plainly when it can't find one instead of guessing. Ships with a Streamlit chat interface.</p>
         <div class="tags"><span>ChromaDB</span><span>Sentence-Transformers</span><span>Ollama (Qwen2.5)</span><span>Streamlit</span></div>
@@ -244,7 +244,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">04 / 05 — signal</div>
+        <div class="proj-index">04 / 06 — signal</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">INSIGHT_AI — graduation project ↗</a></h3>
         <p class="proj-desc">A marketing intelligence dashboard that reads raw Instagram analytics exports and surfaces engagement trends, sentiment shifts, and anomalies a human would otherwise have to dig for by hand. A Python/FastAPI backend runs the scoring and evaluation models; a Next.js frontend presents them through a dedicated dark-mode dashboard design system.</p>
         <div class="tags"><span>FastAPI</span><span>Next.js</span><span>scikit-learn</span></div>
@@ -268,11 +268,38 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">05 / 05 — clinic</div>
+        <div class="proj-index">05 / 06 — clinic</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Diabetes Prediction Model ↗</a></h3>
         <p class="proj-desc">A classifier trained on the Pima Indians Diabetes dataset, tuned for a screening context rather than raw accuracy. Missing clinical values are mean-imputed, hyperparameters are searched with GridSearchCV, and the decision threshold is deliberately lowered from 0.5 to 0.25 — trading some false alarms for fewer missed positives, which is the trade a screening tool should make.</p>
         <div class="tags"><span>scikit-learn</span><span>Random Forest</span><span>GridSearchCV</span></div>
         <a class="proj-link" href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">View source →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="A camera frame reduced to edges, classified, and turned into a lit LED on a circuit board">
+          <rect x="20" y="60" width="150" height="110" rx="10" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="34" y="74" width="122" height="82" rx="4" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="3 3"/>
+          <circle cx="95" cy="115" r="26" fill="none" stroke="var(--violet)" stroke-width="2.5"/>
+          <path d="M185 115 L228 115" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-d5)"/>
+          <defs><marker id="arrow-d5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
+          <rect x="240" y="40" width="140" height="150" rx="10" fill="var(--void-raised)" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="256" y="56" width="108" height="70" rx="4" fill="rgba(109,240,255,0.08)" stroke="var(--cyan)" stroke-width="1"/>
+          <circle cx="310" cy="91" r="18" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+          <circle cx="285" cy="160" r="10" fill="var(--magenta)" opacity="0.9"/>
+          <circle cx="285" cy="160" r="16" fill="none" stroke="var(--magenta)" stroke-width="1.5" opacity="0.4"/>
+          <rect x="316" y="152" width="34" height="16" rx="3" fill="rgba(255,255,255,0.10)"/>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">06 / 06 — hardware</div>
+        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/knn-shape-classifier-arduino" target="_blank" rel="noopener">KNN Shape Classifier + Arduino ↗</a></h3>
+        <p class="proj-desc">A real-time computer vision pipeline that closes the loop from camera to physical hardware. Each frame is converted to grayscale, run through Canny edge detection, and flattened into a pixel vector classified by a KNN model trained to tell squares from circles. The prediction is streamed over serial to an Arduino, which lights a green or yellow LED to match — no cloud, no deep learning, just classical CV and a distance metric running live.</p>
+        <div class="tags"><span>OpenCV</span><span>scikit-learn</span><span>KNN</span><span>Arduino</span><span>Serial I/O</span></div>
+        <a class="proj-link" href="https://github.com/ghayth-saleem/knn-shape-classifier-arduino" target="_blank" rel="noopener">View source →</a>
       </div>
     </div>
   </div>
