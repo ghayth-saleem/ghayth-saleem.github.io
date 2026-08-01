@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
@@ -12,7 +12,7 @@
 <meta property="og:description" content="Personal site of Ghayth Ahmad Rezeq Saleem — a software engineer focused on AI and RAG systems.">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://ghayth-saleem.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2312141c'/%3E%3Ctext x='50' y='68' font-size='58' font-family='monospace' font-weight='700' fill='%23f2836b' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2306070a'/%3E%3Ctext x='50' y='68' font-size='58' font-family='monospace' font-weight='700' fill='%236df0ff' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,453 +28,352 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #12141c;
-    --bg-raised: #191c26;
-    --bg-card: #1d2130;
-    --line: #2b3040;
-    --text: #e8e6e1;
-    --text-dim: #8b90a3;
-    --coral: #f2836b;
-    --teal: #5fb3a3;
-    --amber: #e8b86d;
-    --lav: #9b8cf2;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'Cairo', 'Inter', sans-serif;
-    --nav-bg: rgba(18,20,28,0.85);
-    color-scheme: dark;
-  }
-  :root[data-theme="light"]{
-    --bg: #f6f4f0;
-    --bg-raised: #ffffff;
-    --bg-card: #efece5;
-    --line: #e1ddd3;
-    --text: #23262f;
-    --text-dim: #6b7080;
-    --nav-bg: rgba(246,244,240,0.85);
-    color-scheme: light;
+    --void:#06070a; --void-raised:#0d1016; --line:#1c212b;
+    --text:#ffffff; --text-dim:#dadde4;
+    --cyan:#6df0ff; --violet:#b98bff; --magenta:#ff5fae;
+    --sans:-apple-system,'Segoe UI',system-ui,sans-serif;
+    --mono:ui-monospace,'Cascadia Code','SFMono-Regular',Consolas,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    background:
-      radial-gradient(600px circle at 12% -10%, rgba(242,131,107,0.10), transparent 60%),
-      radial-gradient(700px circle at 100% 0%, rgba(95,179,163,0.08), transparent 55%),
-      var(--bg);
-    color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;
-    transition:background-color .3s ease,color .3s ease;
+  body{background:var(--void);color:var(--text);font-family:var(--sans);line-height:1.55;overflow-x:hidden;}
+  a{color:inherit;}
+  ::selection{background:var(--cyan);color:var(--void);}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:2;}
+  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+
+  #field{position:fixed;inset:0;z-index:0;}
+  .veil{position:fixed;inset:0;z-index:1;background:radial-gradient(1200px circle at 50% 0%, rgba(6,7,10,0) 0%, var(--void) 78%);pointer-events:none;}
+
+  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(6,7,10,0.55);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.02em;}
+  .brand span{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .nav-links{display:none;gap:26px;font-family:var(--mono);font-size:12.5px;color:var(--text-dim);}
+  .nav-links a:hover{color:var(--cyan);}
+  @media(min-width:700px){.nav-links{display:flex;}}
+
+  header.hero{padding:150px 0 110px;text-align:center;}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;}
+  h1{font-size:clamp(38px,8vw,96px);font-weight:800;letter-spacing:-0.03em;line-height:1.02;text-wrap:balance;}
+  h1 .grad{background:linear-gradient(100deg,var(--cyan),var(--violet) 55%,var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:sheen 6s ease-in-out infinite;}
+  @keyframes sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+  .lede{max-width:52ch;margin:26px auto 0;color:var(--text-dim);font-size:16.5px;}
+  .cta-row{display:flex;gap:16px;justify-content:center;margin-top:38px;flex-wrap:wrap;}
+  .btn{position:relative;font-family:var(--mono);font-size:13px;padding:13px 26px;border-radius:999px;border:1px solid var(--line);cursor:pointer;background:var(--void-raised);color:var(--text);transition:border-color .2s,color .2s;}
+  .btn.primary{background:linear-gradient(100deg,var(--cyan),var(--violet));color:var(--void);font-weight:600;border:none;}
+  .btn:hover{border-color:var(--cyan);color:var(--cyan);}
+  .btn.primary:hover{color:var(--void);filter:brightness(1.1);}
+
+  section{padding:100px 0;border-top:1px solid var(--line);}
+  .sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:10px;}
+  .sec-title{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-0.02em;margin-bottom:48px;}
+
+  #work{padding:0;border-top:1px solid var(--line);}
+  #work .sec-head{padding:90px 0 0;}
+
+  .proj{
+    min-height:92vh;display:flex;align-items:center;padding:70px 0;border-bottom:1px solid var(--line);
+    opacity:0.18;transform:translateY(36px) scale(0.985);
+    transition:opacity .7s cubic-bezier(.22,.7,.3,1),transform .7s cubic-bezier(.22,.7,.3,1);
   }
-  ::selection{background:var(--coral);color:var(--bg);}
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 28px;}
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px;}
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
-  }
+  .proj.active{opacity:1;transform:translateY(0) scale(1);}
+  .proj-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  @media(max-width:820px){.proj-inner{grid-template-columns:1fr;gap:34px;}.proj{min-height:0;padding:52px 0;}}
 
-  nav{position:fixed;top:0;right:0;left:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:background-color .3s ease,border-color .3s ease;}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;gap:18px;}
-  .nav-brand{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--text);}
-  .nav-brand span{color:var(--coral);}
-  .nav-right{display:flex;align-items:center;gap:22px;margin-left:auto;}
-  .nav-links{display:none;gap:28px;font-family:var(--mono);font-size:13px;color:var(--text-dim);}
-  .nav-links a:hover{color:var(--teal);}
-  @media(min-width:720px){.nav-links{display:flex;}}
+  .proj-visual{position:relative;border:1px solid var(--line);border-radius:18px;background:var(--void-raised);padding:26px;}
+  .proj-visual svg{width:100%;height:auto;display:block;}
 
-  .theme-toggle{
-    display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;
-    border:1px solid var(--line);background:transparent;color:var(--text-dim);cursor:pointer;font-size:15px;transition:.2s;
-  }
-  .theme-toggle:hover{border-color:var(--teal);color:var(--teal);}
+  .proj-index{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:.1em;margin-bottom:16px;}
+  .proj-title{font-size:clamp(24px,3.2vw,34px);font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;text-wrap:balance;}
+  .proj-title a{text-decoration:none;}
+  .proj-title a:hover{color:var(--cyan);}
+  .proj-desc{color:var(--text-dim);font-size:15px;line-height:1.7;margin-bottom:22px;max-width:56ch;}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
+  .tags span{font-family:var(--mono);font-size:10.5px;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--cyan);background:rgba(109,240,255,0.06);}
+  .proj-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:13px;color:var(--text);border-bottom:1px solid var(--line);padding-bottom:3px;text-decoration:none;}
+  .proj-link:hover{color:var(--cyan);border-color:var(--cyan);}
 
-  .nav-burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;border:1px solid var(--line);border-radius:8px;background:transparent;cursor:pointer;}
-  .nav-burger span{display:block;height:2px;width:16px;margin:0 auto;background:var(--text-dim);transition:.2s;}
-  @media(min-width:720px){.nav-burger{display:none;}}
+  .skills-wrap{display:flex;flex-wrap:wrap;gap:12px;}
+  .pill{font-family:var(--mono);font-size:13px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);color:var(--text);background:var(--void-raised);opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s,border-color .2s,color .2s;}
+  .pill.in{opacity:1;transform:translateY(0);}
+  .pill:hover{border-color:var(--violet);color:var(--violet);}
 
-  .nav-drawer{display:none;flex-direction:column;gap:2px;padding:10px 0 18px;font-family:var(--mono);font-size:14px;background:var(--bg);}
-  .nav-drawer.open{display:flex;}
-  .nav-drawer a{color:var(--text-dim);padding:10px 4px;border-top:1px dashed var(--line);}
-  .nav-drawer a:hover{color:var(--teal);}
-  @media(min-width:720px){.nav-drawer{display:none !important;}}
+  #contact{text-align:center;}
+  #contact h2{font-size:clamp(26px,4vw,44px);font-weight:800;letter-spacing:-0.02em;margin-bottom:34px;text-wrap:balance;}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:14px;font-weight:600;}
+  .contact-links a{padding:14px 26px;border:1px solid var(--line);border-radius:999px;background:var(--void-raised);color:var(--text);transition:border-color .2s,color .2s,background .2s;}
+  .contact-links a:hover{border-color:var(--magenta);color:var(--magenta);background:rgba(255,95,174,0.08);}
 
-  header.hero{padding:150px 0 90px;position:relative;}
-  .term{background:var(--bg-raised);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,0.6);}
-  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--bg-card);border-bottom:1px solid var(--line);}
-  .dot{width:11px;height:11px;border-radius:50%;}
-  .dot.r{background:#f2726b;} .dot.y{background:#e8c26d;} .dot.g{background:#6dd48a;}
-  .term-title{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--text-dim);}
-  .term-body{padding:28px 24px 34px;font-family:var(--mono);font-size:15px;}
-  .prompt-line{color:var(--text-dim);margin-bottom:4px;}
-  .prompt-line .sym{color:var(--teal);}
-  .typed{color:var(--text);}
-  .cursor{display:inline-block;width:8px;height:17px;background:var(--coral);vertical-align:middle;margin-left:2px;animation:blink 1s step-end infinite;}
-  @keyframes blink{50%{opacity:0;}}
-  .out{margin-top:18px;opacity:0;animation:fadeUp .6s ease forwards;animation-delay:2.6s;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-  .out h1{font-family:var(--sans);font-size:clamp(24px,3.6vw,36px);font-weight:800;line-height:1.3;margin-bottom:10px;}
-  .out h1 .name{font-family:var(--mono);color:var(--coral);display:block;font-size:clamp(20px,3vw,28px);margin-bottom:6px;letter-spacing:.5px;}
-  .out p{color:var(--text-dim);font-size:15px;max-width:520px;margin-bottom:20px;}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;}
-  .tag{font-family:var(--mono);font-size:12px;color:var(--amber);background:rgba(232,184,109,0.08);border:1px solid rgba(232,184,109,0.25);padding:5px 10px;border-radius:6px;}
-  .hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
-  .btn{font-family:var(--mono);font-size:13px;font-weight:500;padding:11px 20px;border-radius:8px;border:1px solid var(--line);transition:.2s;cursor:pointer;background:transparent;color:var(--text);}
-  .btn.primary{background:var(--coral);color:var(--bg);border-color:var(--coral);}
-  .btn.primary:hover{background:#f79a85;}
-  .btn.ghost:hover{border-color:var(--teal);color:var(--teal);}
-
-  .sec{padding:80px 0;border-top:1px solid var(--line);}
-  .sec-label{font-family:var(--mono);font-size:12px;color:var(--teal);margin-bottom:8px;display:flex;align-items:center;gap:10px;}
-  .sec-label::before{content:"//";color:var(--text-dim);}
-  .sec-title{font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:38px;}
-
-  /* projects */
-  .empty-state{
-    border:1px dashed var(--line);border-radius:10px;padding:40px 24px;text-align:center;color:var(--text-dim);
-    font-family:var(--mono);font-size:14px;
-  }
-  .repo{position:relative;background:var(--bg-raised);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:16px;transition:.25s;overflow:hidden;}
-  .repo::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--coral),var(--teal));opacity:0;transition:.25s;}
-  .repo:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 20px 40px -24px rgba(0,0,0,0.35);}
-  .repo:hover::before{opacity:1;}
-  .repo-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
-  .repo-name{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--text);}
-  .repo-name .path{color:var(--text-dim);font-weight:400;}
-  .repo-desc{color:var(--text-dim);font-size:14px;margin:10px 0 14px;max-width:600px;}
-  .repo-meta{display:flex;gap:8px;flex-wrap:wrap;}
-  .chip{font-family:var(--mono);font-size:11.5px;color:var(--teal);background:rgba(95,179,163,0.08);border:1px solid rgba(95,179,163,0.25);padding:4px 9px;border-radius:6px;}
-  .repo-links{display:flex;gap:14px;font-family:var(--mono);font-size:12px;margin-top:14px;}
-  .repo-links a{color:var(--coral);}
-  .repo-links a:hover{color:var(--amber);}
-
-  /* admin panel (hidden route) */
-  .admin{
-    display:none;background:var(--bg-raised);border:1px solid var(--coral);border-radius:10px;
-    padding:24px;margin-bottom:26px;
-  }
-  .admin.show{display:block;}
-  .admin-title{font-family:var(--mono);color:var(--coral);font-size:13px;margin-bottom:16px;}
-  .field{margin-bottom:14px;}
-  .field label{display:block;font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:6px;}
-  .field input,.field textarea{width:100%;background:var(--bg-card);border:1px solid var(--line);border-radius:7px;padding:10px 12px;color:var(--text);font-family:var(--sans);font-size:14px;}
-  .field input:focus,.field textarea:focus{outline:none;border-color:var(--teal);}
-  .snippet-box{display:none;margin-top:18px;}
-  .snippet-box.show{display:block;}
-  .snippet-box textarea{font-family:var(--mono);font-size:12px;color:var(--teal);background:var(--bg-card);border:1px solid var(--line);border-radius:8px;padding:14px;width:100%;min-height:150px;}
-  .snippet-hint{color:var(--text-dim);font-size:12.5px;margin-top:8px;line-height:1.7;}
-
-  /* skills */
-  .pkg{background:var(--bg-raised);border:1px solid var(--line);border-radius:10px;font-family:var(--mono);font-size:13.5px;padding:26px 28px;overflow-x:auto;}
-  .pkg .k{color:var(--lav);} .pkg .s{color:var(--teal);} .pkg .c{color:var(--text-dim);}
-  .pkg pre{white-space:pre-wrap;line-height:1.8;}
-
-  /* experience */
-  .log{position:relative;padding-left:26px;border-left:2px solid var(--line);}
-  .commit{position:relative;padding-bottom:8px;}
-  .commit::before{content:"";position:absolute;left:-32px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--coral);}
-  .commit-head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;font-family:var(--mono);font-size:13px;}
-  .commit-hash{color:var(--amber);}
-  .commit-date{color:var(--text-dim);}
-  .commit-msg{font-weight:700;font-size:16px;margin:6px 0 4px;}
-  .commit-body{color:var(--text-dim);font-size:14px;}
-
-  /* contact */
-  .contact-links{display:flex;flex-direction:column;gap:14px;margin-top:8px;font-family:var(--mono);font-size:14px;max-width:420px;}
-  .contact-links a{display:flex;justify-content:space-between;color:var(--text);border-bottom:1px dashed var(--line);padding-bottom:10px;}
-  .contact-links a span{color:var(--text-dim);font-size:12px;}
-  .contact-links a:hover{color:var(--coral);border-color:var(--coral);}
-
-  footer{padding:30px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-dim);border-top:1px solid var(--line);}
-
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
+  footer{padding:40px 0 50px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
+<canvas id="field"></canvas>
+<div class="veil"></div>
 
 <nav>
   <div class="wrap">
-    <div class="nav-brand">ghayth<span>.dev</span></div>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle theme">🌙</button>
-      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="nav-drawer" id="navDrawer">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
+    <div class="brand">ghayth<span>.dev</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="term">
-      <div class="term-bar">
-        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="term-title">ghayth@portfolio — zsh</span>
-      </div>
-      <div class="term-body">
-        <div class="prompt-line"><span class="sym">➜</span> ~ <span id="typed" class="typed"></span><span class="cursor" id="cursor"></span></div>
-        <div class="out">
-          <h1><span class="name">Ghayth Ahmad Rezeq Saleem</span> Software Engineer</h1>
-          <p>Still early in my journey, and I'm trying to learn everything that could help me grow. Sure, I don't have a ton of experience in everything yet — but my work in AI and my specialty? I don't think you'll find one like it 😉</p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">RAG Systems</span>
-            <span class="tag">Machine Learning</span>
-          </div>
-          <div class="hero-cta">
-            <a href="#projects" class="btn primary">View Projects</a>
-            <a href="#contact" class="btn ghost">Get in Touch</a>
-          </div>
-        </div>
-      </div>
-    </div>
+<header class="hero wrap">
+  <div class="kicker">Software Engineer — AI &amp; RAG Systems</div>
+  <h1>I turn raw signal<br>into <span class="grad">structured intelligence.</span></h1>
+  <p class="lede">Ghayth Ahmad Rezeq Saleem — building Arabic OCR, local RAG pipelines, and the ML systems that connect them. Ex-Nextwo, RAG systems intern.</p>
+  <div class="cta-row">
+    <a href="#work" class="btn primary">View Work</a>
+    <a href="#contact" class="btn">Get in Touch</a>
   </div>
 </header>
 
-<section class="sec" id="projects">
-  <div class="wrap">
-    <div class="sec-label">projects</div>
-    <h2 class="sec-title reveal">Selected Projects</h2>
-
-    <!-- Hidden admin panel: only shows when #addproject is appended to the page URL -->
-    <div class="admin" id="adminPanel">
-      <div class="admin-title">🔒 Add project panel (only visible to you via the secret link)</div>
-      <div class="field"><label>Project name</label><input type="text" id="pName" placeholder="e.g. nexus-app"></div>
-      <div class="field"><label>Description</label><textarea id="pDesc" rows="2" placeholder="A short description of the project"></textarea></div>
-      <div class="field"><label>Tech stack</label><input type="text" id="pTech" placeholder="e.g. React / Node.js"></div>
-      <div class="field"><label>Live link (optional)</label><input type="text" id="pLive" placeholder="https://..."></div>
-      <div class="field"><label>Source code link (optional)</label><input type="text" id="pRepo" placeholder="https://github.com/..."></div>
-      <button class="btn primary" onclick="addProject()">Add Project to Page</button>
-      <div class="snippet-box" id="snippetBox">
-        <label style="display:block;font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:8px;">Copy this code and paste it into portfolio.html right before the &lt;!-- END PROJECTS --&gt; line so it's saved permanently:</label>
-        <textarea id="snippetText" readonly></textarea>
-        <button class="btn ghost" style="margin-top:10px;" onclick="copySnippet()">Copy Code</button>
-        <div class="snippet-hint">This panel only exists for you — regular visitors will never see it since it only opens via the secret link.</div>
-      </div>
-    </div>
-
-    <div id="projectsList">
-      <div class="repo reveal in">
-        <div class="repo-top">
-          <div class="repo-name">Arabic OCR <span class="path">— CRNN + CTC, from scratch</span></div>
-        </div>
-        <p class="repo-desc">A from-scratch Arabic text-line recognizer: a CNN + BiLSTM feature extractor trained with CTC loss, no pretrained weights and no external OCR engine. Includes a synthetic-data generator, a classical ink-projection line-segmentation step for full scanned pages, and is sized to train end-to-end on a 4GB laptop GPU.</p>
-        <div class="repo-meta"><span class="chip">PyTorch</span><span class="chip">CRNN</span><span class="chip">CTC Loss</span><span class="chip">Computer Vision</span></div>
-        <div class="repo-links"><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Source Code →</a></div>
-      </div>
-      <div class="repo reveal in">
-        <div class="repo-top">
-          <div class="repo-name">Meeting RAG Pipeline <span class="path">— local, self-hosted</span></div>
-        </div>
-        <p class="repo-desc">Turns Arabic/English video meetings into a searchable, growing knowledge base. Every stage — audio extraction, speaker diarization, Whisper transcription, multilingual embeddings, vector storage, and LLM summarization — runs fully locally, with no cloud API calls or keys.</p>
-        <div class="repo-meta"><span class="chip">Whisper</span><span class="chip">pyannote-audio</span><span class="chip">Qdrant</span><span class="chip">Ollama (Qwen2.5)</span></div>
-        <div class="repo-links"><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Source Code →</a></div>
-      </div>
-      <div class="repo reveal in">
-        <div class="repo-top">
-          <div class="repo-name">INSIGHT_AI <span class="path">— Graduation Project</span></div>
-        </div>
-        <p class="repo-desc">An AI-powered marketing intelligence dashboard that analyzes social media analytics (Instagram) to surface engagement trends, sentiment shifts, and anomalies. Built with a Python/FastAPI backend, custom ML models for evaluation and scoring, and a Next.js frontend dashboard following a dedicated dark-mode design system.</p>
-        <div class="repo-meta"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Next.js</span><span class="chip">Machine Learning</span></div>
-        <div class="repo-links"><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">Source Code →</a></div>
-      </div>
-      <div class="repo reveal in">
-        <div class="repo-top">
-          <div class="repo-name">Al-Fatyan Scout RAG System <span class="path">— نظام محاضر الفتيان</span></div>
-        </div>
-        <p class="repo-desc">A fully local, offline RAG system for querying Arabic scout troop meeting minutes. Combines section-aware chunking (per meeting, split on the decisions header for longer records), local multilingual embeddings, and a local LLM to answer questions in Arabic or English — every answer cites the exact meeting number and date, and the system explicitly says when it can't find an answer instead of guessing. Ships with a Streamlit chat UI.</p>
-        <div class="repo-meta"><span class="chip">Ollama (Qwen2.5)</span><span class="chip">ChromaDB</span><span class="chip">Sentence-Transformers</span><span class="chip">Streamlit</span></div>
-        <div class="repo-links"><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Source Code →</a></div>
-      </div>
-      <div class="repo reveal in">
-        <div class="repo-top">
-          <div class="repo-name">Diabetes Prediction Model</div>
-        </div>
-        <p class="repo-desc">A machine learning model that predicts diabetes diagnosis using the Pima Indians Diabetes dataset. Includes mean imputation for missing clinical values, hyperparameter tuning with GridSearchCV, and a lowered decision threshold (0.5 → 0.25) to prioritize recall — reducing missed positive cases, which matters most in a medical screening context.</p>
-        <div class="repo-meta"><span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">Random Forest</span></div>
-        <div class="repo-links"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Source Code →</a></div>
-      </div>
-    </div>
-    <!-- END PROJECTS -->
+<section id="work">
+  <div class="wrap sec-head">
+    <div class="sec-label">// selected work</div>
+    <h2 class="sec-title">Five systems, one throughline</h2>
   </div>
-</section>
 
-<section class="sec" id="skills">
-  <div class="wrap">
-    <div class="sec-label">skills</div>
-    <h2 class="sec-title reveal">package.json</h2>
-    <div class="pkg reveal">
-<pre><span class="c">{</span>
-  <span class="k">"languages"</span>: [<span class="s">"Python"</span>, <span class="s">"Java"</span>, <span class="s">"C++"</span>],
-  <span class="k">"ai"</span>: [<span class="s">"RAG Systems"</span>, <span class="s">"LLM Integration"</span>, <span class="s">"Machine Learning"</span>, <span class="s">"Deep Learning"</span>, <span class="s">"Prompt Engineering"</span>],
-  <span class="k">"currentlyLearning"</span>: [<span class="s">"C#"</span>, <span class="s">".NET"</span>, <span class="s">"FastAPI"</span>, <span class="s">"Vector Databases"</span>, <span class="s">"LangChain"</span>]
-<span class="c">}</span></pre>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="experience">
-  <div class="wrap">
-    <div class="sec-label">experience</div>
-    <h2 class="sec-title reveal">git log --oneline</h2>
-    <div class="log reveal">
-      <div class="commit">
-        <div class="commit-head"><span class="commit-hash">#f7a812</span><span class="commit-date">4-month duration</span></div>
-        <div class="commit-msg">Intern — Nextwo</div>
-        <div class="commit-body">Specialized internship on RAG (Retrieval-Augmented Generation) systems — building and testing solutions that combine language models with knowledge bases.</div>
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="Scanned page segmented into lines, resolving into recognized text">
+          <rect x="20" y="16" width="200" height="248" rx="6" fill="none" stroke="var(--line)" stroke-width="2"/>
+          <rect x="40" y="40" width="160" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <rect x="40" y="66" width="140" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <rect x="40" y="92" width="150" height="14" rx="3" stroke="var(--cyan)" stroke-width="1.5" fill="rgba(109,240,255,0.16)" stroke-dasharray="3 3"/>
+          <rect x="40" y="118" width="120" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <rect x="40" y="144" width="155" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <path d="M230 99 L280 99" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-d)"/>
+          <defs><marker id="arrow-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
+          <rect x="290" y="70" width="92" height="58" rx="6" fill="var(--void)" stroke="var(--violet)" stroke-width="1.5"/>
+          <rect x="302" y="86" width="68" height="6" rx="2" fill="var(--violet)" opacity="0.7"/>
+          <rect x="302" y="98" width="52" height="6" rx="2" fill="var(--violet)" opacity="0.5"/>
+          <rect x="302" y="110" width="60" height="6" rx="2" fill="var(--violet)" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">01 / 05 — vision</div>
+        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Arabic OCR — CRNN + CTC ↗</a></h3>
+        <p class="proj-desc">A text-line recognizer for Arabic built entirely from scratch — no pretrained weights, no external OCR engine. A CNN feature extractor feeds a two-layer BiLSTM, trained with CTC loss so no character-level alignment is needed. A synthetic-data generator renders hundreds of thousands of Arabic sentences across random fonts and light augmentation to train it, and a classical ink-projection step segments full scanned pages into individual lines before recognition — sized to train end-to-end on a 4GB laptop GPU.</p>
+        <div class="tags"><span>PyTorch</span><span>CRNN</span><span>CTC Loss</span><span>Computer Vision</span></div>
+        <a class="proj-link" href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">View source →</a>
       </div>
     </div>
   </div>
-</section>
 
-<section class="sec" id="contact">
-  <div class="wrap">
-    <div class="sec-label">contact</div>
-    <h2 class="sec-title reveal">Let's Talk About Your Project</h2>
-    <p style="color:var(--text-dim);margin-bottom:24px;max-width:480px;">Currently available for internships and job opportunities. Reach out through any of the channels below.</p>
-    <div class="contact-links reveal">
-      <a href="tel:+962782978154">Phone <span>0782978154</span></a>
-      <a href="mailto:ghayth1216@gmail.com">Email <span>ghayth1216@gmail.com</span></a>
-      <a href="https://www.linkedin.com/in/ghayth-saleem-0032892ba" target="_blank" rel="noopener">LinkedIn <span>ghayth-saleem</span></a>
-      <a href="https://github.com/ghayth-saleem" target="_blank" rel="noopener">GitHub <span>ghayth-saleem</span></a>
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="Audio waveform turning into a transcript, feeding a local knowledge base">
+          <g stroke="var(--cyan)" stroke-width="6" stroke-linecap="round">
+            <line x1="30" y1="140" x2="30" y2="110"/><line x1="46" y1="140" x2="46" y2="90"/><line x1="62" y1="140" x2="62" y2="160"/>
+            <line x1="78" y1="140" x2="78" y2="185"/><line x1="94" y1="140" x2="94" y2="105"/><line x1="110" y1="140" x2="110" y2="150"/>
+            <line x1="126" y1="140" x2="126" y2="170"/><line x1="142" y1="140" x2="142" y2="95"/>
+          </g>
+          <path d="M165 140 L215 140" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-d2)"/>
+          <defs><marker id="arrow-d2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
+          <rect x="228" y="76" width="150" height="128" rx="8" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
+          <circle cx="248" cy="98" r="5" fill="var(--magenta)"/>
+          <rect x="262" y="94" width="98" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <circle cx="248" cy="120" r="5" fill="var(--cyan)"/>
+          <rect x="262" y="116" width="80" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <circle cx="248" cy="142" r="5" fill="var(--magenta)"/>
+          <rect x="262" y="138" width="90" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <rect x="248" y="164" width="112" height="20" rx="10" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
+          <text x="304" y="178" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">searchable</text>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">02 / 05 — speech</div>
+        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Meeting RAG Pipeline ↗</a></h3>
+        <p class="proj-desc">Turns Arabic and English video meetings into a searchable, growing knowledge base — every stage runs on your own machine. Audio is diarized to know who spoke when, transcribed with Whisper, embedded with a multilingual model, and stored in a local Qdrant instance that accumulates across meetings. Ask a question and a local LLM retrieves the relevant chunks and writes the answer, or generates full meeting minutes — no cloud API keys anywhere in the pipeline.</p>
+        <div class="tags"><span>Whisper</span><span>pyannote-audio</span><span>Qdrant</span><span>Ollama (Qwen2.5)</span></div>
+        <a class="proj-link" href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">View source →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="A question answered with a citation to a specific scout meeting">
+          <rect x="24" y="110" width="90" height="46" rx="14" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="69" y="139" text-anchor="middle" font-family="ui-monospace,monospace" font-size="20" fill="var(--text-dim)">?</text>
+          <path d="M120 133 L160 133" stroke="var(--line)" stroke-width="2" marker-end="url(#arrow-d3)"/>
+          <defs><marker id="arrow-d3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
+          <rect x="170" y="60" width="200" height="140" rx="14" fill="var(--void-raised)" stroke="var(--cyan)" stroke-width="1.5"/>
+          <g transform="translate(190,84)">
+            <rect x="70" width="90" height="9" rx="3" fill="rgba(255,255,255,0.14)"/>
+            <rect x="40" y="18" width="120" height="9" rx="3" fill="rgba(255,255,255,0.14)"/>
+            <rect x="90" y="36" width="70" height="9" rx="3" fill="rgba(255,255,255,0.14)"/>
+          </g>
+          <rect x="190" y="150" width="130" height="26" rx="13" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
+          <text x="255" y="167" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">meeting #14 — Mar 3</text>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">03 / 05 — record</div>
+        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Al-Fatyan Scout RAG — نظام محاضر الفتيان ↗</a></h3>
+        <p class="proj-desc">A fully offline RAG system built to answer questions over a scout troop's Arabic meeting minutes. Chunking is section-aware — records split on their decisions header so long meetings stay coherent — and a local multilingual embedding model plus a local LLM handle retrieval and generation in Arabic or English. Every answer cites the exact meeting number and date it came from, and the system says plainly when it can't find one instead of guessing. Ships with a Streamlit chat interface.</p>
+        <div class="tags"><span>ChromaDB</span><span>Sentence-Transformers</span><span>Ollama (Qwen2.5)</span><span>Streamlit</span></div>
+        <a class="proj-link" href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">View source →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="Dashboard tile with a trend line, bar chart, and anomaly marker">
+          <rect x="30" y="30" width="340" height="220" rx="14" fill="var(--void-raised)" stroke="var(--line)" stroke-width="1.5"/>
+          <polyline points="55,150 100,120 145,160 190,90 235,110 280,70 325,95" fill="none" stroke="var(--cyan)" stroke-width="2.5"/>
+          <circle cx="280" cy="70" r="5" fill="var(--magenta)"/>
+          <g fill="rgba(185,139,255,0.35)">
+            <rect x="55" y="195" width="18" height="35"/><rect x="83" y="180" width="18" height="50"/>
+            <rect x="111" y="205" width="18" height="25"/><rect x="139" y="170" width="18" height="60"/>
+            <rect x="167" y="190" width="18" height="40"/>
+          </g>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">04 / 05 — signal</div>
+        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">INSIGHT_AI — graduation project ↗</a></h3>
+        <p class="proj-desc">A marketing intelligence dashboard that reads raw Instagram analytics exports and surfaces engagement trends, sentiment shifts, and anomalies a human would otherwise have to dig for by hand. A Python/FastAPI backend runs the scoring and evaluation models; a Next.js frontend presents them through a dedicated dark-mode dashboard design system.</p>
+        <div class="tags"><span>FastAPI</span><span>Next.js</span><span>scikit-learn</span></div>
+        <a class="proj-link" href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">View source →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="Decision threshold moved from 0.5 to 0.25 to favor recall">
+          <polyline points="30,90 60,60 90,110 120,50 150,95 180,70" fill="none" stroke="var(--magenta)" stroke-width="2.5" opacity="0.8"/>
+          <line x1="30" y1="180" x2="370" y2="180" stroke="var(--line)" stroke-width="2"/>
+          <circle cx="200" cy="180" r="7" fill="var(--line)"/>
+          <text x="200" y="205" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="var(--text-dim)">0.50 default</text>
+          <path d="M200 180 L130 180" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow-d4)"/>
+          <defs><marker id="arrow-d4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--cyan)"/></marker></defs>
+          <circle cx="130" cy="180" r="9" fill="var(--cyan)"/>
+          <text x="130" y="205" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="var(--cyan)">0.25 tuned</text>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">05 / 05 — clinic</div>
+        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Diabetes Prediction Model ↗</a></h3>
+        <p class="proj-desc">A classifier trained on the Pima Indians Diabetes dataset, tuned for a screening context rather than raw accuracy. Missing clinical values are mean-imputed, hyperparameters are searched with GridSearchCV, and the decision threshold is deliberately lowered from 0.5 to 0.25 — trading some false alarms for fewer missed positives, which is the trade a screening tool should make.</p>
+        <div class="tags"><span>scikit-learn</span><span>Random Forest</span><span>GridSearchCV</span></div>
+        <a class="proj-link" href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">View source →</a>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>© 2026 Ghayth Ahmad Rezeq Saleem. Built with HTML and CSS.</footer>
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label">// stack</div>
+    <h2 class="sec-title">What I build with</h2>
+    <div class="skills-wrap">
+      <span class="pill reveal">Python</span><span class="pill reveal">PyTorch</span><span class="pill reveal">RAG Systems</span>
+      <span class="pill reveal">LLM Integration</span><span class="pill reveal">Deep Learning</span><span class="pill reveal">Prompt Engineering</span>
+      <span class="pill reveal">Java</span><span class="pill reveal">C++</span>
+      <span class="pill reveal">learning: FastAPI</span><span class="pill reveal">learning: LangChain</span><span class="pill reveal">learning: .NET</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Available for internships<br>and new opportunities.</h2>
+    <div class="contact-links">
+      <a href="mailto:ghayth1216@gmail.com">ghayth1216@gmail.com</a>
+      <a href="tel:+962782978154">+962 78 297 8154</a>
+      <a href="https://www.linkedin.com/in/ghayth-saleem-0032892ba" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ghayth-saleem" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Ghayth Ahmad Rezeq Saleem. Built with HTML, CSS, and canvas.</footer>
 
 <script>
-  // typing effect
-  const text = "whoami";
-  const typedEl = document.getElementById('typed');
-  const cursorEl = document.getElementById('cursor');
-  let i = 0;
-  function type(){
-    if(i < text.length){
-      typedEl.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, 110);
-    } else {
-      setTimeout(()=>{ cursorEl.style.display='none'; }, 900);
-    }
+  // ---- neural field canvas background ----
+  const canvas = document.getElementById('field');
+  const ctx = canvas.getContext('2d');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W,H,DPR;
+  function size(){
+    DPR = Math.min(window.devicePixelRatio||1,2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W*DPR; canvas.height = H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
   }
-  setTimeout(type, 500);
+  size(); window.addEventListener('resize', size);
 
-  // theme toggle (persisted)
-  const root = document.documentElement;
-  const themeBtn = document.getElementById('themeToggle');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    themeBtn.textContent = t === 'light' ? '☀️' : '🌙';
-  }
-  applyTheme(localStorage.getItem('theme') || 'dark');
-  themeBtn.addEventListener('click', ()=>{
-    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    localStorage.setItem('theme', next);
-    applyTheme(next);
-  });
-
-  // mobile nav drawer
-  const burger = document.getElementById('navBurger');
-  const drawer = document.getElementById('navDrawer');
-  burger.addEventListener('click', ()=>{
-    const isOpen = drawer.classList.toggle('open');
-    burger.setAttribute('aria-expanded', isOpen);
-  });
-  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
-    drawer.classList.remove('open');
-    burger.setAttribute('aria-expanded','false');
+  const N = Math.min(90, Math.floor((window.innerWidth*window.innerHeight)/16000));
+  const nodes = Array.from({length:N}, ()=>({
+    x: Math.random()*W, y: Math.random()*H,
+    vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25,
   }));
+  let mouse = {x:-9999,y:-9999};
+  window.addEventListener('mousemove', e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
+  window.addEventListener('mouseleave', ()=>{ mouse.x=-9999; mouse.y=-9999; });
 
-  // scroll reveal
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); }
+  function step(){
+    ctx.clearRect(0,0,W,H);
+    nodes.forEach(n=>{
+      n.x += n.vx; n.y += n.vy;
+      if(n.x<0||n.x>W) n.vx*=-1;
+      if(n.y<0||n.y>H) n.vy*=-1;
+      const dx = n.x-mouse.x, dy = n.y-mouse.y;
+      const d = Math.hypot(dx,dy);
+      if(d < 120){ n.x += dx/d*0.6; n.y += dy/d*0.6; }
+    });
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j];
+        const d = Math.hypot(a.x-b.x, a.y-b.y);
+        if(d < 140){
+          ctx.strokeStyle = `rgba(109,240,255,${0.14*(1-d/140)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n=>{
+      ctx.fillStyle = 'rgba(185,139,255,0.55)';
+      ctx.beginPath(); ctx.arc(n.x,n.y,1.8,0,Math.PI*2); ctx.fill();
+    });
+    if(!reduced) requestAnimationFrame(step);
+  }
+  if(reduced){ step(); } else { requestAnimationFrame(step); }
+
+  // ---- scroll reveal (skills pills: reveal once) ----
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('in'), i*40);
+        io.unobserve(e.target);
+      }
     });
   }, {threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // guard: the panel only shows when the URL contains #addproject
-  function checkAdminRoute(){
-    if(window.location.hash === '#addproject'){
-      document.getElementById('adminPanel').classList.add('show');
-    } else {
-      document.getElementById('adminPanel').classList.remove('show');
-    }
-  }
-  checkAdminRoute();
-  window.addEventListener('hashchange', checkAdminRoute);
-
-  function addProject(){
-    const name = document.getElementById('pName').value.trim();
-    const desc = document.getElementById('pDesc').value.trim();
-    const tech = document.getElementById('pTech').value.trim();
-    const live = document.getElementById('pLive').value.trim();
-    const repo = document.getElementById('pRepo').value.trim();
-
-    if(!name){ alert('Please enter a project name'); return; }
-
-    const emptyState = document.getElementById('emptyState');
-    if(emptyState) emptyState.remove();
-
-    const links = [];
-    if(live) links.push(`<a href="${escapeHtml(live)}" target="_blank" rel="noopener">View Project →</a>`);
-    if(repo) links.push(`<a href="${escapeHtml(repo)}" target="_blank" rel="noopener">Source Code →</a>`);
-
-    const chips = tech.split(/[\/,]/).map(t=>t.trim()).filter(Boolean)
-      .map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join('');
-
-    const cardHtml =
-`    <div class="repo reveal in">
-      <div class="repo-top">
-        <div class="repo-name">${escapeHtml(name)}</div>
-      </div>
-      <p class="repo-desc">${escapeHtml(desc)}</p>
-      <div class="repo-meta">${chips}</div>
-      <div class="repo-links">${links.join('\n        ')}</div>
-    </div>`;
-
-    document.getElementById('projectsList').insertAdjacentHTML('beforeend', cardHtml);
-
-    const snippetBox = document.getElementById('snippetBox');
-    const snippetText = document.getElementById('snippetText');
-    snippetText.value = cardHtml;
-    snippetBox.classList.add('show');
-
-    document.getElementById('pName').value = '';
-    document.getElementById('pDesc').value = '';
-    document.getElementById('pTech').value = '';
-    document.getElementById('pLive').value = '';
-    document.getElementById('pRepo').value = '';
-  }
-
-  function copySnippet(){
-    const el = document.getElementById('snippetText');
-    el.select();
-    document.execCommand('copy');
-    alert('Code copied — paste it into the file right before the END PROJECTS line');
-  }
-
-  function escapeHtml(str){
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
+  // ---- project showcase: fade in/out as each project scrolls through ----
+  const projIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      e.target.classList.toggle('active', e.intersectionRatio > 0.35);
+    });
+  }, {threshold:[0,0.1,0.2,0.3,0.35,0.4,0.5,0.6,0.75,0.9,1]});
+  document.querySelectorAll('.proj').forEach(el=>projIo.observe(el));
+  if(reduced){ document.querySelectorAll('.proj').forEach(el=>el.classList.add('active')); }
 </script>
-
 </body>
 </html>
