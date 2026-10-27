@@ -96,6 +96,7 @@
   .tags span{font-family:var(--mono);font-size:10.5px;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--cyan);background:rgba(109,240,255,0.06);}
   .proj-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:13px;color:var(--text);border-bottom:1px solid var(--line);padding-bottom:3px;text-decoration:none;}
   .proj-link:hover{color:var(--cyan);border-color:var(--cyan);}
+  .proj-private{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--text-dim);border:1px dashed var(--line);border-radius:999px;padding:5px 12px;}
 
   .skills-wrap{display:flex;flex-wrap:wrap;gap:12px;}
   .pill{font-family:var(--mono);font-size:13px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);color:var(--text);background:var(--void-raised);opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s,border-color .2s,color .2s;}
@@ -128,7 +129,7 @@
   <div class="kicker">Software Engineer — AI &amp; RAG Systems</div>
   <div class="name-line">Ghayth Ahmad Rezeq Saleem</div>
   <h1>I turn raw signal into <span class="grad">structured intelligence.</span></h1>
-  <p class="lede">Building Arabic OCR, local RAG pipelines, and the ML systems that connect them. Ex-Nextwo, RAG systems intern.</p>
+  <p class="lede">Building grounded Arabic Q&amp;A over laws and regulations, Arabic OCR, local RAG pipelines, and the ML systems that connect them. Ex-Nextwo, RAG systems intern.</p>
   <div class="cta-row">
     <a href="#work" class="btn primary">View Work</a>
     <a href="#contact" class="btn">Get in Touch</a>
@@ -138,7 +139,115 @@
 <section id="work">
   <div class="wrap sec-head">
     <div class="sec-label">// selected work</div>
-    <h2 class="sec-title">Six systems, one throughline</h2>
+    <h2 class="sec-title">Nine systems, one throughline</h2>
+  </div>
+
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="A regulation with one article highlighted, cited in a verified answer">
+          <rect x="20" y="20" width="160" height="240" rx="6" fill="none" stroke="var(--line)" stroke-width="2"/>
+          <rect x="36" y="40" width="128" height="10" rx="3" fill="rgba(255,255,255,0.14)"/>
+          <rect x="36" y="64" width="110" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <rect x="36" y="80" width="120" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <rect x="30" y="102" width="140" height="44" rx="4" fill="rgba(109,240,255,0.14)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <rect x="40" y="112" width="116" height="8" rx="3" fill="var(--cyan)" opacity="0.55"/>
+          <rect x="40" y="128" width="90" height="8" rx="3" fill="var(--cyan)" opacity="0.35"/>
+          <rect x="36" y="162" width="118" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <rect x="36" y="178" width="100" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <rect x="36" y="194" width="124" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
+          <path d="M178 124 L220 124" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-m1)"/>
+          <defs><marker id="arrow-m1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
+          <rect x="230" y="60" width="150" height="140" rx="10" fill="var(--void)" stroke="var(--violet)" stroke-width="1.5"/>
+          <rect x="246" y="78" width="118" height="8" rx="3" fill="rgba(255,255,255,0.14)"/>
+          <rect x="246" y="94" width="96" height="8" rx="3" fill="rgba(255,255,255,0.14)"/>
+          <rect x="246" y="110" width="108" height="8" rx="3" fill="rgba(255,255,255,0.14)"/>
+          <rect x="240" y="132" width="130" height="22" rx="11" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
+          <text x="305" y="147" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9.5" fill="var(--cyan)">art. 12 · p. 4 · v2026</text>
+          <circle cx="258" cy="178" r="8" fill="none" stroke="var(--magenta)" stroke-width="1.5"/>
+          <path d="M254 178 L257 181 L262 175" fill="none" stroke="var(--magenta)" stroke-width="1.5"/>
+          <text x="274" y="182" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">numbers verified</text>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">01 / 09 — law</div>
+        <h3 class="proj-title">Mizan — ميزان</h3>
+        <p class="proj-desc">A grounded question-answering engine over Jordanian tax and regulatory documents, built as a product for accounting and tax firms. Every answer cites a specific article, page, and dated version of a specific document — or says the sources don't contain one, without ever calling the model. Generated answers pass a verifier before they're shown: citation markers must be in range, every number must appear in a source, and nothing may be phrased as personal advice; calculations live in a separate, clearly labelled section that each office opts into. Scanned laws are ingested through OCR, and multi-tenant isolation is enforced in the database schema and the vector layer rather than trusted to application code — the same Docker image runs hosted or on a client's own server.</p>
+        <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Qdrant</span><span>multilingual-e5</span><span>PaddleOCR</span><span>Claude / Ollama</span><span>Docker</span></div>
+        <span class="proj-private">Private codebase · commercial product</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="A WhatsApp message drafted from company data, held for staff approval, with sensitive requests routed to a person">
+          <rect x="20" y="40" width="120" height="40" rx="14" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="34" y="54" width="70" height="7" rx="3" fill="rgba(255,255,255,0.16)"/>
+          <rect x="34" y="66" width="50" height="7" rx="3" fill="rgba(255,255,255,0.10)"/>
+          <path d="M80 86 L80 120" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-w1)"/>
+          <defs><marker id="arrow-w1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
+          <rect x="20" y="130" width="120" height="50" rx="10" fill="var(--void-raised)" stroke="var(--violet)" stroke-width="1.5"/>
+          <text x="80" y="152" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--violet)">classify</text>
+          <text x="80" y="168" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">+ retrieve</text>
+          <path d="M146 155 L196 120" stroke="var(--cyan)" stroke-width="2" marker-end="url(#arrow-w2)"/>
+          <path d="M146 155 L196 208" stroke="var(--magenta)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow-w3)"/>
+          <defs>
+            <marker id="arrow-w2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--cyan)"/></marker>
+            <marker id="arrow-w3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--magenta)"/></marker>
+          </defs>
+          <rect x="206" y="66" width="174" height="96" rx="10" fill="var(--void)" stroke="var(--cyan)" stroke-width="1.5"/>
+          <rect x="222" y="82" width="120" height="7" rx="3" fill="rgba(255,255,255,0.16)"/>
+          <rect x="222" y="96" width="100" height="7" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <rect x="222" y="110" width="80" height="7" rx="3" fill="rgba(255,255,255,0.10)"/>
+          <rect x="222" y="128" width="86" height="22" rx="11" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
+          <text x="265" y="143" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">approve ✓</text>
+          <rect x="206" y="188" width="174" height="40" rx="10" fill="var(--void-raised)" stroke="var(--magenta)" stroke-width="1.5"/>
+          <text x="293" y="212" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--magenta)">booking / discount → staff</text>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">02 / 09 — inbox</div>
+        <h3 class="proj-title">WhatsApp Inquiry Assistant</h3>
+        <p class="proj-desc">An assistant that answers customer questions on WhatsApp from a company's own data — built for real-estate developers and adapted for clinics. Each message is classified by Claude with structured output, the relevant project facts are pulled from the company's website, spreadsheets, or a read-only database, and a reply is drafted in Arabic or English using those facts only. A guard checks every number and date against the source, and no reply goes out until a staff member approves it; bookings, discounts, and unpublished prices skip the draft and go straight to a person. Webhooks are signature-verified and de-duplicated, and multiple clients run as isolated instances behind a router keyed on the receiving phone number, with an end-to-end test proving one client's messages never reach another's database.</p>
+        <div class="tags"><span>FastAPI</span><span>WhatsApp Cloud API</span><span>Claude</span><span>Structured Output</span><span>pytest</span></div>
+        <span class="proj-private">Private codebase · client work</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-inner wrap">
+      <div class="proj-visual">
+        <svg viewBox="0 0 400 280" role="img" aria-label="A plain-language answer sheet linked to a law article, with retrieval accuracy bars">
+          <rect x="20" y="30" width="200" height="220" rx="8" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
+          <rect x="20" y="30" width="6" height="220" rx="3" fill="var(--cyan)" opacity="0.7"/>
+          <rect x="42" y="50" width="90" height="10" rx="3" fill="rgba(255,255,255,0.18)"/>
+          <rect x="42" y="76" width="160" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <rect x="42" y="92" width="140" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <rect x="42" y="108" width="150" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
+          <rect x="42" y="134" width="160" height="56" rx="4" fill="rgba(185,139,255,0.08)" stroke="var(--violet)" stroke-width="1"/>
+          <rect x="54" y="146" width="130" height="7" rx="3" fill="var(--violet)" opacity="0.5"/>
+          <rect x="54" y="160" width="110" height="7" rx="3" fill="var(--violet)" opacity="0.35"/>
+          <text x="54" y="182" font-family="ui-monospace,monospace" font-size="10" fill="var(--violet)">article 20</text>
+          <rect x="42" y="206" width="100" height="22" rx="11" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
+          <text x="92" y="221" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">cited</text>
+          <line x1="250" y1="220" x2="380" y2="220" stroke="var(--line)" stroke-width="2"/>
+          <rect x="268" y="120" width="36" height="100" rx="4" fill="rgba(109,240,255,0.30)" stroke="var(--cyan)" stroke-width="1.5"/>
+          <rect x="326" y="80" width="36" height="140" rx="4" fill="rgba(185,139,255,0.30)" stroke="var(--violet)" stroke-width="1.5"/>
+          <text x="286" y="240" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">R@1</text>
+          <text x="344" y="240" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">R@5</text>
+        </svg>
+      </div>
+      <div class="proj-text">
+        <div class="proj-index">03 / 09 — civic</div>
+        <h3 class="proj-title">Muyassar — ميسّر</h3>
+        <p class="proj-desc">A civic-tech assistant that explains people's rights under published Jordanian laws — starting with personal data protection and the rights of persons with disabilities — in plain Arabic, with every statement linked to the article it comes from. Laws are chunked on article boundaries, each chunk carrying the document, article number, issuing body, date, and source link; retrieval is reranked before Claude writes the answer, and the cited text opens right beside it. A known-answer benchmark measures how often the correct article comes back first and in the top five, and those numbers are shown live on the page instead of being hidden. It explains the text; it doesn't give personal legal advice.</p>
+        <div class="tags"><span>Python</span><span>RAG</span><span>Reranker</span><span>Claude Sonnet</span><span>Recall@k eval</span><span>RTL UI</span></div>
+        <span class="proj-private">In progress · not yet public</span>
+      </div>
+    </div>
   </div>
 
   <div class="proj">
@@ -160,7 +269,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">01 / 06 — vision</div>
+        <div class="proj-index">04 / 09 — vision</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Arabic OCR — CRNN + CTC ↗</a></h3>
         <p class="proj-desc">A text-line recognizer for Arabic built entirely from scratch — no pretrained weights, no external OCR engine. A CNN feature extractor feeds a two-layer BiLSTM, trained with CTC loss so no character-level alignment is needed. A synthetic-data generator renders hundreds of thousands of Arabic sentences across random fonts and light augmentation to train it, and a classical ink-projection step segments full scanned pages into individual lines before recognition — sized to train end-to-end on a 4GB laptop GPU.</p>
         <div class="tags"><span>PyTorch</span><span>CRNN</span><span>CTC Loss</span><span>Computer Vision</span></div>
@@ -192,7 +301,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">02 / 06 — speech</div>
+        <div class="proj-index">05 / 09 — speech</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Meeting RAG Pipeline ↗</a></h3>
         <p class="proj-desc">Turns Arabic and English video meetings into a searchable, growing knowledge base — every stage runs on your own machine. Audio is diarized to know who spoke when, transcribed with Whisper, embedded with a multilingual model, and stored in a local Qdrant instance that accumulates across meetings. Ask a question and a local LLM retrieves the relevant chunks and writes the answer, or generates full meeting minutes — no cloud API keys anywhere in the pipeline.</p>
         <div class="tags"><span>Whisper</span><span>pyannote-audio</span><span>Qdrant</span><span>Ollama (Qwen2.5)</span></div>
@@ -220,7 +329,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">03 / 06 — record</div>
+        <div class="proj-index">06 / 09 — record</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Al-Fatyan Scout RAG — نظام محاضر الفتيان ↗</a></h3>
         <p class="proj-desc">A fully offline RAG system built to answer questions over a scout troop's Arabic meeting minutes. Chunking is section-aware — records split on their decisions header so long meetings stay coherent — and a local multilingual embedding model plus a local LLM handle retrieval and generation in Arabic or English. Every answer cites the exact meeting number and date it came from, and the system says plainly when it can't find one instead of guessing. Ships with a Streamlit chat interface.</p>
         <div class="tags"><span>ChromaDB</span><span>Sentence-Transformers</span><span>Ollama (Qwen2.5)</span><span>Streamlit</span></div>
@@ -244,7 +353,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">04 / 06 — signal</div>
+        <div class="proj-index">07 / 09 — signal</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">INSIGHT_AI — graduation project ↗</a></h3>
         <p class="proj-desc">A marketing intelligence dashboard that reads raw Instagram analytics exports and surfaces engagement trends, sentiment shifts, and anomalies a human would otherwise have to dig for by hand. A Python/FastAPI backend runs the scoring and evaluation models; a Next.js frontend presents them through a dedicated dark-mode dashboard design system.</p>
         <div class="tags"><span>FastAPI</span><span>Next.js</span><span>scikit-learn</span></div>
@@ -268,7 +377,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">05 / 06 — clinic</div>
+        <div class="proj-index">08 / 09 — clinic</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Diabetes Prediction Model ↗</a></h3>
         <p class="proj-desc">A classifier trained on the Pima Indians Diabetes dataset, tuned for a screening context rather than raw accuracy. Missing clinical values are mean-imputed, hyperparameters are searched with GridSearchCV, and the decision threshold is deliberately lowered from 0.5 to 0.25 — trading some false alarms for fewer missed positives, which is the trade a screening tool should make.</p>
         <div class="tags"><span>scikit-learn</span><span>Random Forest</span><span>GridSearchCV</span></div>
@@ -295,7 +404,7 @@
         </svg>
       </div>
       <div class="proj-text">
-        <div class="proj-index">06 / 06 — hardware</div>
+        <div class="proj-index">09 / 09 — hardware</div>
         <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/knn-shape-classifier-arduino" target="_blank" rel="noopener">KNN Shape Classifier + Arduino ↗</a></h3>
         <p class="proj-desc">A real-time computer vision pipeline that closes the loop from camera to physical hardware. Each frame is converted to grayscale, run through Canny edge detection, and flattened into a pixel vector classified by a KNN model trained to tell squares from circles. The prediction is streamed over serial to an Arduino, which lights a green or yellow LED to match — no cloud, no deep learning, just classical CV and a distance metric running live.</p>
         <div class="tags"><span>OpenCV</span><span>scikit-learn</span><span>KNN</span><span>Arduino</span><span>Serial I/O</span></div>
@@ -312,8 +421,10 @@
     <div class="skills-wrap">
       <span class="pill reveal">Python</span><span class="pill reveal">PyTorch</span><span class="pill reveal">RAG Systems</span>
       <span class="pill reveal">LLM Integration</span><span class="pill reveal">Deep Learning</span><span class="pill reveal">Prompt Engineering</span>
+      <span class="pill reveal">Claude API</span><span class="pill reveal">FastAPI</span><span class="pill reveal">PostgreSQL</span>
+      <span class="pill reveal">Qdrant</span><span class="pill reveal">Docker</span>
       <span class="pill reveal">Java</span><span class="pill reveal">C++</span>
-      <span class="pill reveal">learning: FastAPI</span><span class="pill reveal">learning: LangChain</span><span class="pill reveal">learning: .NET</span>
+      <span class="pill reveal">learning: LangChain</span><span class="pill reveal">learning: .NET</span>
     </div>
   </div>
 </section>
