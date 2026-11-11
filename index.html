@@ -12,7 +12,10 @@
 <meta property="og:description" content="Personal site of Ghayth Ahmad Rezeq Saleem — a software engineer focused on AI and RAG systems.">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://ghayth-saleem.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2306070a'/%3E%3Ctext x='50' y='68' font-size='58' font-family='monospace' font-weight='700' fill='%236df0ff' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23ffe14d'/%3E%3Ctext x='50' y='72' font-size='64' font-family='Arial,sans-serif' font-weight='700' fill='%2314213d' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,490 +33,303 @@
 </script>
 <style>
   :root{
-    --void:#06070a; --void-raised:#0d1016; --line:#1c212b;
-    --text:#ffffff; --text-dim:#dadde4;
-    --cyan:#6df0ff; --violet:#b98bff; --magenta:#ff5fae;
-    --sans:-apple-system,'Segoe UI',system-ui,sans-serif;
-    --mono:ui-monospace,'Cascadia Code','SFMono-Regular',Consolas,monospace;
+    --paper:#f6f7f3; --ink:#14213d; --ink-soft:#4a5570; --rule:#d5d9d0;
+    --marker:#ffe14d; --marker-ink:#14213d; --link:#0f6b5c;
+    --display:'Bricolage Grotesque','IBM Plex Sans',system-ui,sans-serif;
+    --body:'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#131a2b; --ink:#eef0ea; --ink-soft:#a9b1c4; --rule:#2b3550;
+      --marker:#ffe14d; --marker-ink:#14213d; --link:#7fd6c4;
+    }
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--void);color:var(--text);font-family:var(--sans);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-  a{color:inherit;}
-  ::selection{background:var(--cyan);color:var(--void);}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:2;}
-  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+  html{scroll-behavior:smooth;scroll-padding-top:24px;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;} *{transition:none !important;}}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px;}
+  a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:2px;}
+  ::selection{background:var(--marker);color:var(--marker-ink);}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+  .ar{font-family:'IBM Plex Sans Arabic',var(--body);font-weight:500;color:var(--ink-soft);margin-inline-start:.35em;}
 
-  #field{position:fixed;inset:0;z-index:0;}
-  .veil{position:fixed;inset:0;z-index:1;background:radial-gradient(1200px circle at 50% 0%, rgba(6,7,10,0) 0%, var(--void) 78%);pointer-events:none;}
+  .top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding-top:26px;padding-bottom:26px;font-size:15px;}
+  .top .who{font-weight:600;text-decoration:none;}
+  .top nav{display:flex;gap:22px;}
+  .top nav a{text-decoration:none;color:var(--ink-soft);}
+  .top nav a:hover{color:var(--ink);text-decoration:underline;}
 
-  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(6,7,10,0.55);border-bottom:1px solid var(--line);}
-  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;}
-  .brand{font-family:var(--sans);font-weight:800;font-size:15.5px;letter-spacing:-0.01em;color:var(--text);}
-  .brand span{color:var(--cyan);font-family:var(--mono);font-weight:600;}
-  .nav-links{display:none;gap:26px;font-family:var(--mono);font-size:12.5px;color:var(--text-dim);}
-  .nav-links a:hover{color:var(--cyan);}
-  @media(min-width:700px){.nav-links{display:flex;}}
+  .hero{padding-top:clamp(40px,9vw,110px);padding-bottom:clamp(56px,9vw,110px);}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(52px,11.5vw,148px);line-height:.92;letter-spacing:-.035em;margin-bottom:.12em;}
+  .role{font-size:clamp(17px,1.6vw,20px);color:var(--ink-soft);margin-bottom:clamp(36px,5vw,64px);}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:clamp(32px,6vw,88px);align-items:start;}
+  .answer{font-family:var(--display);font-weight:500;font-size:clamp(21px,2.5vw,31px);line-height:1.42;letter-spacing:-.01em;max-width:34em;}
+  .answer p + p{margin-top:.8em;}
+  .cite{text-decoration:none;}
+  .cite mark{background:linear-gradient(transparent 12%,var(--marker) 12%,var(--marker) 92%,transparent 92%);color:var(--marker-ink);padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-color .15s;}
+  .cite sup{font-family:var(--body);font-size:.5em;font-weight:600;color:var(--link);margin-left:.2em;vertical-align:.85em;line-height:0;}
+  .cite:hover mark,.cite:focus-visible mark{background-color:var(--marker);}
 
-  header.hero{padding:150px 0 110px;text-align:center;}
-  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;}
-  .name-line{font-size:clamp(30px,6vw,64px);font-weight:800;letter-spacing:-0.02em;line-height:1.08;color:var(--text);text-wrap:balance;margin-bottom:18px;}
-  h1{font-size:clamp(26px,4.2vw,48px);font-weight:700;letter-spacing:-0.02em;line-height:1.2;text-wrap:balance;color:var(--text-dim);}
-  h1 .grad{background:linear-gradient(100deg,var(--cyan),#e4d9ff 60%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:sheen 6s ease-in-out infinite;font-weight:800;}
-  @keyframes sheen{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
-  .lede{max-width:52ch;margin:26px auto 0;color:var(--text);font-size:16.5px;}
-  .cta-row{display:flex;gap:16px;justify-content:center;margin-top:38px;flex-wrap:wrap;}
-  .btn{position:relative;font-family:var(--mono);font-size:13px;padding:13px 26px;border-radius:999px;border:1px solid var(--line);cursor:pointer;background:var(--void-raised);color:var(--text);transition:border-color .2s,color .2s;}
-  .btn.primary{background:linear-gradient(100deg,var(--cyan),var(--violet));color:var(--void);font-weight:600;border:none;}
-  .btn:hover{border-color:var(--cyan);color:var(--cyan);}
-  .btn.primary:hover{color:var(--void);filter:brightness(1.1);}
+  .refs{font-size:15px;border-top:2px solid var(--ink);padding-top:14px;}
+  .refs h2{font-family:var(--body);font-size:15px;font-weight:600;margin-bottom:8px;}
+  .refs ol{list-style:none;}
+  .refs a{display:flex;gap:10px;padding:5px 6px;margin:0 -6px;text-decoration:none;color:var(--ink-soft);border-radius:3px;}
+  .refs a span:first-child{color:var(--link);font-weight:600;min-width:1.1em;}
+  .refs a:hover{color:var(--ink);}
+  .refs a.lit{background:var(--marker);color:var(--marker-ink);}
+  .refs a.lit span:first-child{color:var(--marker-ink);}
+  @media (max-width:860px){.hero-grid{grid-template-columns:1fr;} .refs ol{columns:2;column-gap:24px;} .refs li{break-inside:avoid;}}
+  @media (max-width:460px){.refs ol{columns:1;}}
 
-  section{padding:100px 0;border-top:1px solid var(--line);}
-  .sec-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:10px;}
-  .sec-title{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-0.02em;margin-bottom:48px;}
+  .band{border-top:1px solid var(--rule);padding-top:clamp(48px,7vw,88px);padding-bottom:clamp(48px,7vw,88px);}
+  .band > h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.4vw,52px);letter-spacing:-.025em;line-height:1.05;margin-bottom:.35em;}
+  .band > .intro{color:var(--ink-soft);max-width:38em;margin-bottom:clamp(28px,4vw,48px);}
 
-  #work{padding:0;border-top:1px solid var(--line);}
-  #work .sec-head{padding:90px 0 0;}
+  .srcs{list-style:none;}
+  .src{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(18px,4vw,56px);padding:34px 18px;margin:0 -18px;border-top:1px solid var(--rule);border-left:4px solid transparent;transition:border-color .2s,background-color .2s;}
+  .src:target,.src.lit{border-left-color:var(--marker);background:color-mix(in srgb,var(--marker) 14%,transparent);}
+  .src-head{display:flex;gap:16px;align-items:flex-start;}
+  .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:14px;font-weight:600;display:grid;place-items:center;margin-top:3px;}
+  .src h3{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.3vw,28px);line-height:1.18;letter-spacing:-.015em;}
+  .src h3 a{text-decoration:none;}
+  .src h3 a:hover{text-decoration:underline;}
+  .status{font-size:15px;color:var(--ink-soft);margin-top:6px;}
+  .src-body p{max-width:38em;}
+  .src-body p + p{margin-top:.8em;}
+  .src-body .stack{font-size:15px;color:var(--ink-soft);}
+  .src-link a{color:var(--link);font-weight:500;}
+  @media (max-width:760px){.src{grid-template-columns:1fr;padding:28px 14px;margin:0 -14px;}}
 
-  .proj{
-    min-height:92vh;display:flex;align-items:center;padding:70px 0;border-bottom:1px solid var(--line);
-    opacity:0.18;transform:translateY(36px) scale(0.985);
-    transition:opacity .7s cubic-bezier(.22,.7,.3,1),transform .7s cubic-bezier(.22,.7,.3,1);
-  }
-  .proj.active{opacity:1;transform:translateY(0) scale(1);}
-  .proj-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
-  @media(max-width:820px){.proj-inner{grid-template-columns:1fr;gap:34px;}.proj{min-height:0;padding:52px 0;}}
+  .about{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(24px,4vw,56px);}
+  .about h3{font-size:15px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+  .about p{max-width:30em;}
 
-  .proj-visual{position:relative;border:1px solid var(--line);border-radius:18px;background:var(--void-raised);padding:26px;}
-  .proj-visual svg{width:100%;height:auto;display:block;}
+  .contact h2{max-width:16em;}
+  .contact ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0 40px;margin-top:28px;}
+  .contact li{border-top:1px solid var(--rule);padding:14px 0;}
+  .contact li span{display:block;font-size:15px;color:var(--ink-soft);}
+  .contact li a{font-size:19px;font-weight:500;text-decoration:none;overflow-wrap:anywhere;}
+  .contact li a:hover{text-decoration:underline;color:var(--link);}
 
-  .proj-index{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:.1em;margin-bottom:16px;}
-  .proj-title{font-size:clamp(24px,3.2vw,34px);font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;text-wrap:balance;}
-  .proj-title a{text-decoration:none;}
-  .proj-title a:hover{color:var(--cyan);}
-  .proj-desc{color:var(--text-dim);font-size:15px;line-height:1.7;margin-bottom:22px;max-width:56ch;}
-  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
-  .tags span{font-family:var(--mono);font-size:10.5px;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--cyan);background:rgba(109,240,255,0.06);}
-  .proj-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:13px;color:var(--text);border-bottom:1px solid var(--line);padding-bottom:3px;text-decoration:none;}
-  .proj-link:hover{color:var(--cyan);border-color:var(--cyan);}
-  .proj-private{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--text-dim);border:1px dashed var(--line);border-radius:999px;padding:5px 12px;}
-
-  .skills-wrap{display:flex;flex-wrap:wrap;gap:12px;}
-  .pill{font-family:var(--mono);font-size:13px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);color:var(--text);background:var(--void-raised);opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s,border-color .2s,color .2s;}
-  .pill.in{opacity:1;transform:translateY(0);}
-  .pill:hover{border-color:var(--violet);color:var(--violet);}
-
-  #contact{text-align:center;}
-  #contact h2{font-size:clamp(26px,4vw,44px);font-weight:800;letter-spacing:-0.02em;margin-bottom:34px;text-wrap:balance;}
-  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:14px;font-weight:600;}
-  .contact-links a{padding:14px 26px;border:1px solid var(--line);border-radius:999px;background:var(--void-raised);color:var(--text);transition:border-color .2s,color .2s,background .2s;}
-  .contact-links a:hover{border-color:var(--magenta);color:var(--magenta);background:rgba(255,95,174,0.08);}
-
-  footer{padding:40px 0 50px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--text-dim);border-top:1px solid var(--line);}
+  footer{border-top:1px solid var(--rule);padding-top:24px;padding-bottom:40px;font-size:15px;color:var(--ink-soft);}
 </style>
 </head>
 <body>
-<canvas id="field"></canvas>
-<div class="veil"></div>
 
-<nav>
-  <div class="wrap">
-    <div class="brand">Ghayth Saleem<span> · dev</span></div>
-    <div class="nav-links">
-      <a href="#work">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+<div class="top wrap">
+  <a class="who" href="#top">Ghayth Saleem</a>
+  <nav aria-label="Sections"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</div>
+
+<header class="hero wrap" id="top">
+  <h1>Ghayth Saleem</h1>
+  <p class="role">Software engineer in Jordan, working on AI and retrieval systems.</p>
+  <div class="hero-grid">
+    <div class="answer">
+      <p>I build AI systems that answer from real documents and show where each answer came from. Most of them work in Arabic.</p>
+      <p>Mizan answers tax-law questions and <a class="cite" href="#mizan" data-n="1"><mark>cites the article, page and version</mark><sup>1</sup></a>. A WhatsApp assistant drafts replies from a company's own data and <a class="cite" href="#whatsapp" data-n="2"><mark>waits for staff approval</mark><sup>2</sup></a>. Muyassar <a class="cite" href="#muyassar" data-n="3"><mark>explains people's rights under Jordanian law in plain Arabic</mark><sup>3</sup></a>.</p>
+      <p>Underneath that, I trained <a class="cite" href="#ocr" data-n="4"><mark>an Arabic OCR model from scratch</mark><sup>4</sup></a> and built offline pipelines that make <a class="cite" href="#meetings" data-n="5"><mark>recorded meetings</mark><sup>5</sup></a> and <a class="cite" href="#scouts" data-n="6"><mark>written minutes</mark><sup>6</sup></a> searchable.</p>
     </div>
-  </div>
-</nav>
-
-<header class="hero wrap">
-  <div class="kicker">Software Engineer — AI &amp; RAG Systems</div>
-  <div class="name-line">Ghayth Ahmad Rezeq Saleem</div>
-  <h1>I turn raw signal into <span class="grad">structured intelligence.</span></h1>
-  <p class="lede">Building grounded Arabic Q&amp;A over laws and regulations, Arabic OCR, local RAG pipelines, and the ML systems that connect them. Ex-Nextwo, RAG systems intern.</p>
-  <div class="cta-row">
-    <a href="#work" class="btn primary">View Work</a>
-    <a href="#contact" class="btn">Get in Touch</a>
+    <aside class="refs" aria-labelledby="refs-h">
+      <h2 id="refs-h">Where each claim comes from</h2>
+      <ol>
+        <li><a href="#mizan" data-n="1"><span>1</span><span>Mizan</span></a></li>
+        <li><a href="#whatsapp" data-n="2"><span>2</span><span>WhatsApp inquiry assistant</span></a></li>
+        <li><a href="#muyassar" data-n="3"><span>3</span><span>Muyassar</span></a></li>
+        <li><a href="#ocr" data-n="4"><span>4</span><span>Arabic OCR with CRNN and CTC</span></a></li>
+        <li><a href="#meetings" data-n="5"><span>5</span><span>Meeting RAG pipeline</span></a></li>
+        <li><a href="#scouts" data-n="6"><span>6</span><span>Al-Fatyan Scout RAG</span></a></li>
+        <li><a href="#insight" data-n="7"><span>7</span><span>INSIGHT_AI</span></a></li>
+        <li><a href="#diabetes" data-n="8"><span>8</span><span>Diabetes prediction model</span></a></li>
+        <li><a href="#knn" data-n="9"><span>9</span><span>KNN shape classifier with Arduino</span></a></li>
+      </ol>
+    </aside>
   </div>
 </header>
 
-<section id="work">
-  <div class="wrap sec-head">
-    <div class="sec-label">// selected work</div>
-    <h2 class="sec-title">Nine systems, one throughline</h2>
-  </div>
+<section class="band wrap" id="work">
+  <h2>Work</h2>
+  <p class="intro">Nine projects. The numbers match the citations above.</p>
+  <ol class="srcs">
+    <li class="src" id="mizan" data-n="1">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">1</span>
+        <div>
+          <h3>Mizan <span class="ar" lang="ar" dir="rtl">ميزان</span></h3>
+          <p class="status">Commercial product, private code</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>A question-answering engine over Jordanian tax and regulatory documents, built for accounting and tax firms. Every answer cites the article, page and dated version it came from, or says the sources don't cover the question without calling the model at all.</p>
+        <p>A verifier checks each generated answer before it is shown: citations must be in range and every number must appear in a source. Scanned laws come in through OCR. Each firm's data is isolated in the database schema and the vector layer, and the same Docker image runs hosted or on a client's own server.</p>
+        <p class="stack"><span class="vh">Built with </span>FastAPI, PostgreSQL, Qdrant, multilingual-e5, PaddleOCR, Claude or Ollama, Docker</p>
+        
+      </div>
+    </li>
+    <li class="src" id="whatsapp" data-n="2">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">2</span>
+        <div>
+          <h3>WhatsApp inquiry assistant</h3>
+          <p class="status">Client work, private code</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>Answers customer questions on WhatsApp from a company's own data. Built for real-estate developers and adapted for clinics. Claude classifies each message, the relevant facts are pulled from the company's website, spreadsheets or a read-only database, and a reply is drafted in Arabic or English from those facts only.</p>
+        <p>A guard checks every number and date against the source, and nothing is sent until a staff member approves it. Bookings, discounts and unpublished prices skip the draft and go straight to a person. Each client runs as an isolated instance, with an end-to-end test proving one client's messages never reach another's database.</p>
+        <p class="stack"><span class="vh">Built with </span>FastAPI, WhatsApp Cloud API, Claude structured output, pytest</p>
+        
+      </div>
+    </li>
+    <li class="src" id="muyassar" data-n="3">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">3</span>
+        <div>
+          <h3>Muyassar <span class="ar" lang="ar" dir="rtl">ميسّر</span></h3>
+          <p class="status">In progress, not public yet</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>Explains people's rights under published Jordanian laws in plain Arabic, starting with personal data protection and the rights of persons with disabilities. Every statement links to the article it comes from, and the cited text opens beside the answer.</p>
+        <p>Laws are chunked on article boundaries and retrieval is reranked before Claude writes. A known-answer benchmark measures how often the right article comes back first and in the top five, and those numbers are shown on the page. It explains the text; it does not give personal legal advice.</p>
+        <p class="stack"><span class="vh">Built with </span>Python, RAG, reranker, Claude Sonnet, recall@k evaluation, RTL interface</p>
+        
+      </div>
+    </li>
+    <li class="src" id="ocr" data-n="4">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">4</span>
+        <div>
+          <h3><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Arabic OCR with CRNN and CTC</a></h3>
+          <p class="status">Open source</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>A text-line recognizer for Arabic built from scratch, with no pretrained weights and no external OCR engine. A CNN feeds a two-layer BiLSTM trained with CTC loss, so no character-level alignment is needed.</p>
+        <p>A generator renders hundreds of thousands of Arabic sentences in random fonts to train it, and an ink-projection step splits scanned pages into lines before recognition. The whole thing is sized to train on a 4GB laptop GPU.</p>
+        <p class="stack"><span class="vh">Built with </span>PyTorch, CRNN, CTC loss, computer vision</p>
+        <p class="src-link"><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Source code on GitHub</a></p>
+      </div>
+    </li>
+    <li class="src" id="meetings" data-n="5">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">5</span>
+        <div>
+          <h3><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Meeting RAG pipeline</a></h3>
+          <p class="status">Open source</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>Turns Arabic and English video meetings into a searchable knowledge base that grows with each meeting, with every stage running on your own machine.</p>
+        <p>Audio is diarized to know who spoke when, transcribed with Whisper, embedded with a multilingual model and stored in a local Qdrant instance. A local LLM answers questions from the retrieved chunks or writes full meeting minutes. No cloud API keys anywhere.</p>
+        <p class="stack"><span class="vh">Built with </span>Whisper, pyannote-audio, Qdrant, Ollama (Qwen2.5)</p>
+        <p class="src-link"><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Source code on GitHub</a></p>
+      </div>
+    </li>
+    <li class="src" id="scouts" data-n="6">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">6</span>
+        <div>
+          <h3><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Al-Fatyan Scout RAG</a> <span class="ar" lang="ar" dir="rtl">نظام محاضر الفتيان</span></h3>
+          <p class="status">Open source</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>A fully offline system that answers questions over a scout troop's Arabic meeting minutes. Every answer cites the meeting number and date it came from, and says plainly when it can't find one.</p>
+        <p>Records are split on their decisions header so long meetings stay coherent. A local multilingual embedding model and a local LLM handle Arabic and English, behind a Streamlit chat interface.</p>
+        <p class="stack"><span class="vh">Built with </span>ChromaDB, Sentence-Transformers, Ollama (Qwen2.5), Streamlit</p>
+        <p class="src-link"><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Source code on GitHub</a></p>
+      </div>
+    </li>
+    <li class="src" id="insight" data-n="7">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">7</span>
+        <div>
+          <h3><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">INSIGHT_AI</a></h3>
+          <p class="status">Graduation project, open source</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>A marketing dashboard that reads raw Instagram analytics exports and surfaces engagement trends, sentiment shifts and anomalies that would otherwise take manual digging.</p>
+        <p>A FastAPI backend runs the scoring and evaluation models, and a Next.js frontend presents them.</p>
+        <p class="stack"><span class="vh">Built with </span>FastAPI, Next.js, scikit-learn</p>
+        <p class="src-link"><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">Source code on GitHub</a></p>
+      </div>
+    </li>
+    <li class="src" id="diabetes" data-n="8">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">8</span>
+        <div>
+          <h3><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Diabetes prediction model</a></h3>
+          <p class="status">Open source</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>A classifier trained on the Pima Indians Diabetes dataset and tuned for screening instead of raw accuracy.</p>
+        <p>Missing clinical values are mean-imputed, hyperparameters are searched with GridSearchCV, and the decision threshold is lowered from 0.5 to 0.25. That trades some false alarms for fewer missed positives, which is the trade a screening tool should make.</p>
+        <p class="stack"><span class="vh">Built with </span>scikit-learn, random forest, GridSearchCV</p>
+        <p class="src-link"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Source code on GitHub</a></p>
+      </div>
+    </li>
+    <li class="src" id="knn" data-n="9">
+      <div class="src-head">
+        <span class="num" aria-hidden="true">9</span>
+        <div>
+          <h3><a href="https://github.com/ghayth-saleem/knn-shape-classifier-arduino" target="_blank" rel="noopener">KNN shape classifier with Arduino</a></h3>
+          <p class="status">Open source</p>
+        </div>
+      </div>
+      <div class="src-body">
+        <p>A real-time vision pipeline that goes from camera to physical hardware. Each frame is converted to grayscale, run through Canny edge detection and classified as a square or a circle by a KNN model.</p>
+        <p>The prediction is sent over serial to an Arduino, which lights a green or yellow LED to match. Classical computer vision and a distance metric, running live.</p>
+        <p class="stack"><span class="vh">Built with </span>OpenCV, scikit-learn, KNN, Arduino, serial I/O</p>
+        <p class="src-link"><a href="https://github.com/ghayth-saleem/knn-shape-classifier-arduino" target="_blank" rel="noopener">Source code on GitHub</a></p>
+      </div>
+    </li>
+  </ol>
+</section>
 
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="A regulation with one article highlighted, cited in a verified answer">
-          <rect x="20" y="20" width="160" height="240" rx="6" fill="none" stroke="var(--line)" stroke-width="2"/>
-          <rect x="36" y="40" width="128" height="10" rx="3" fill="rgba(255,255,255,0.14)"/>
-          <rect x="36" y="64" width="110" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <rect x="36" y="80" width="120" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <rect x="30" y="102" width="140" height="44" rx="4" fill="rgba(109,240,255,0.14)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
-          <rect x="40" y="112" width="116" height="8" rx="3" fill="var(--cyan)" opacity="0.55"/>
-          <rect x="40" y="128" width="90" height="8" rx="3" fill="var(--cyan)" opacity="0.35"/>
-          <rect x="36" y="162" width="118" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <rect x="36" y="178" width="100" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <rect x="36" y="194" width="124" height="8" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <path d="M178 124 L220 124" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-m1)"/>
-          <defs><marker id="arrow-m1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
-          <rect x="230" y="60" width="150" height="140" rx="10" fill="var(--void)" stroke="var(--violet)" stroke-width="1.5"/>
-          <rect x="246" y="78" width="118" height="8" rx="3" fill="rgba(255,255,255,0.14)"/>
-          <rect x="246" y="94" width="96" height="8" rx="3" fill="rgba(255,255,255,0.14)"/>
-          <rect x="246" y="110" width="108" height="8" rx="3" fill="rgba(255,255,255,0.14)"/>
-          <rect x="240" y="132" width="130" height="22" rx="11" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
-          <text x="305" y="147" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9.5" fill="var(--cyan)">art. 12 · p. 4 · v2026</text>
-          <circle cx="258" cy="178" r="8" fill="none" stroke="var(--magenta)" stroke-width="1.5"/>
-          <path d="M254 178 L257 181 L262 175" fill="none" stroke="var(--magenta)" stroke-width="1.5"/>
-          <text x="274" y="182" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">numbers verified</text>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">01 / 09 — law</div>
-        <h3 class="proj-title">Mizan — ميزان</h3>
-        <p class="proj-desc">A grounded question-answering engine over Jordanian tax and regulatory documents, built as a product for accounting and tax firms. Every answer cites a specific article, page, and dated version of a specific document — or says the sources don't contain one, without ever calling the model. Generated answers pass a verifier before they're shown: citation markers must be in range, every number must appear in a source, and nothing may be phrased as personal advice; calculations live in a separate, clearly labelled section that each office opts into. Scanned laws are ingested through OCR, and multi-tenant isolation is enforced in the database schema and the vector layer rather than trusted to application code — the same Docker image runs hosted or on a client's own server.</p>
-        <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Qdrant</span><span>multilingual-e5</span><span>PaddleOCR</span><span>Claude / Ollama</span><span>Docker</span></div>
-        <span class="proj-private">Private codebase · commercial product</span>
-      </div>
+<section class="band wrap" id="about">
+  <h2>About</h2>
+  <div class="about">
+    <div>
+      <h3>Experience</h3>
+      <p>Four months as a RAG systems intern at Nextwo.</p>
     </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="A WhatsApp message drafted from company data, held for staff approval, with sensitive requests routed to a person">
-          <rect x="20" y="40" width="120" height="40" rx="14" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
-          <rect x="34" y="54" width="70" height="7" rx="3" fill="rgba(255,255,255,0.16)"/>
-          <rect x="34" y="66" width="50" height="7" rx="3" fill="rgba(255,255,255,0.10)"/>
-          <path d="M80 86 L80 120" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-w1)"/>
-          <defs><marker id="arrow-w1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
-          <rect x="20" y="130" width="120" height="50" rx="10" fill="var(--void-raised)" stroke="var(--violet)" stroke-width="1.5"/>
-          <text x="80" y="152" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--violet)">classify</text>
-          <text x="80" y="168" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">+ retrieve</text>
-          <path d="M146 155 L196 120" stroke="var(--cyan)" stroke-width="2" marker-end="url(#arrow-w2)"/>
-          <path d="M146 155 L196 208" stroke="var(--magenta)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow-w3)"/>
-          <defs>
-            <marker id="arrow-w2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--cyan)"/></marker>
-            <marker id="arrow-w3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--magenta)"/></marker>
-          </defs>
-          <rect x="206" y="66" width="174" height="96" rx="10" fill="var(--void)" stroke="var(--cyan)" stroke-width="1.5"/>
-          <rect x="222" y="82" width="120" height="7" rx="3" fill="rgba(255,255,255,0.16)"/>
-          <rect x="222" y="96" width="100" height="7" rx="3" fill="rgba(255,255,255,0.12)"/>
-          <rect x="222" y="110" width="80" height="7" rx="3" fill="rgba(255,255,255,0.10)"/>
-          <rect x="222" y="128" width="86" height="22" rx="11" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
-          <text x="265" y="143" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">approve ✓</text>
-          <rect x="206" y="188" width="174" height="40" rx="10" fill="var(--void-raised)" stroke="var(--magenta)" stroke-width="1.5"/>
-          <text x="293" y="212" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--magenta)">booking / discount → staff</text>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">02 / 09 — inbox</div>
-        <h3 class="proj-title">WhatsApp Inquiry Assistant</h3>
-        <p class="proj-desc">An assistant that answers customer questions on WhatsApp from a company's own data — built for real-estate developers and adapted for clinics. Each message is classified by Claude with structured output, the relevant project facts are pulled from the company's website, spreadsheets, or a read-only database, and a reply is drafted in Arabic or English using those facts only. A guard checks every number and date against the source, and no reply goes out until a staff member approves it; bookings, discounts, and unpublished prices skip the draft and go straight to a person. Webhooks are signature-verified and de-duplicated, and multiple clients run as isolated instances behind a router keyed on the receiving phone number, with an end-to-end test proving one client's messages never reach another's database.</p>
-        <div class="tags"><span>FastAPI</span><span>WhatsApp Cloud API</span><span>Claude</span><span>Structured Output</span><span>pytest</span></div>
-        <span class="proj-private">Private codebase · client work</span>
-      </div>
+    <div>
+      <h3>What I work with</h3>
+      <p>Python, PyTorch, FastAPI, PostgreSQL, Qdrant, Docker and the Claude API. Retrieval, LLM integration, prompt design and deep learning. Some Java and C++.</p>
     </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="A plain-language answer sheet linked to a law article, with retrieval accuracy bars">
-          <rect x="20" y="30" width="200" height="220" rx="8" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
-          <rect x="20" y="30" width="6" height="220" rx="3" fill="var(--cyan)" opacity="0.7"/>
-          <rect x="42" y="50" width="90" height="10" rx="3" fill="rgba(255,255,255,0.18)"/>
-          <rect x="42" y="76" width="160" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
-          <rect x="42" y="92" width="140" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
-          <rect x="42" y="108" width="150" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
-          <rect x="42" y="134" width="160" height="56" rx="4" fill="rgba(185,139,255,0.08)" stroke="var(--violet)" stroke-width="1"/>
-          <rect x="54" y="146" width="130" height="7" rx="3" fill="var(--violet)" opacity="0.5"/>
-          <rect x="54" y="160" width="110" height="7" rx="3" fill="var(--violet)" opacity="0.35"/>
-          <text x="54" y="182" font-family="ui-monospace,monospace" font-size="10" fill="var(--violet)">article 20</text>
-          <rect x="42" y="206" width="100" height="22" rx="11" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
-          <text x="92" y="221" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">cited</text>
-          <line x1="250" y1="220" x2="380" y2="220" stroke="var(--line)" stroke-width="2"/>
-          <rect x="268" y="120" width="36" height="100" rx="4" fill="rgba(109,240,255,0.30)" stroke="var(--cyan)" stroke-width="1.5"/>
-          <rect x="326" y="80" width="36" height="140" rx="4" fill="rgba(185,139,255,0.30)" stroke="var(--violet)" stroke-width="1.5"/>
-          <text x="286" y="240" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">R@1</text>
-          <text x="344" y="240" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--text-dim)">R@5</text>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">03 / 09 — civic</div>
-        <h3 class="proj-title">Muyassar — ميسّر</h3>
-        <p class="proj-desc">A civic-tech assistant that explains people's rights under published Jordanian laws — starting with personal data protection and the rights of persons with disabilities — in plain Arabic, with every statement linked to the article it comes from. Laws are chunked on article boundaries, each chunk carrying the document, article number, issuing body, date, and source link; retrieval is reranked before Claude writes the answer, and the cited text opens right beside it. A known-answer benchmark measures how often the correct article comes back first and in the top five, and those numbers are shown live on the page instead of being hidden. It explains the text; it doesn't give personal legal advice.</p>
-        <div class="tags"><span>Python</span><span>RAG</span><span>Reranker</span><span>Claude Sonnet</span><span>Recall@k eval</span><span>RTL UI</span></div>
-        <span class="proj-private">In progress · not yet public</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="Scanned page segmented into lines, resolving into recognized text">
-          <rect x="20" y="16" width="200" height="248" rx="6" fill="none" stroke="var(--line)" stroke-width="2"/>
-          <rect x="40" y="40" width="160" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <rect x="40" y="66" width="140" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <rect x="40" y="92" width="150" height="14" rx="3" stroke="var(--cyan)" stroke-width="1.5" fill="rgba(109,240,255,0.16)" stroke-dasharray="3 3"/>
-          <rect x="40" y="118" width="120" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <rect x="40" y="144" width="155" height="14" rx="3" fill="rgba(109,240,255,0.10)"/>
-          <path d="M230 99 L280 99" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-d)"/>
-          <defs><marker id="arrow-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
-          <rect x="290" y="70" width="92" height="58" rx="6" fill="var(--void)" stroke="var(--violet)" stroke-width="1.5"/>
-          <rect x="302" y="86" width="68" height="6" rx="2" fill="var(--violet)" opacity="0.7"/>
-          <rect x="302" y="98" width="52" height="6" rx="2" fill="var(--violet)" opacity="0.5"/>
-          <rect x="302" y="110" width="60" height="6" rx="2" fill="var(--violet)" opacity="0.35"/>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">04 / 09 — vision</div>
-        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">Arabic OCR — CRNN + CTC ↗</a></h3>
-        <p class="proj-desc">A text-line recognizer for Arabic built entirely from scratch — no pretrained weights, no external OCR engine. A CNN feature extractor feeds a two-layer BiLSTM, trained with CTC loss so no character-level alignment is needed. A synthetic-data generator renders hundreds of thousands of Arabic sentences across random fonts and light augmentation to train it, and a classical ink-projection step segments full scanned pages into individual lines before recognition — sized to train end-to-end on a 4GB laptop GPU.</p>
-        <div class="tags"><span>PyTorch</span><span>CRNN</span><span>CTC Loss</span><span>Computer Vision</span></div>
-        <a class="proj-link" href="https://github.com/ghayth-saleem/arabic-ocr-crnn" target="_blank" rel="noopener">View source →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="Audio waveform turning into a transcript, feeding a local knowledge base">
-          <g stroke="var(--cyan)" stroke-width="6" stroke-linecap="round">
-            <line x1="30" y1="140" x2="30" y2="110"/><line x1="46" y1="140" x2="46" y2="90"/><line x1="62" y1="140" x2="62" y2="160"/>
-            <line x1="78" y1="140" x2="78" y2="185"/><line x1="94" y1="140" x2="94" y2="105"/><line x1="110" y1="140" x2="110" y2="150"/>
-            <line x1="126" y1="140" x2="126" y2="170"/><line x1="142" y1="140" x2="142" y2="95"/>
-          </g>
-          <path d="M165 140 L215 140" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-d2)"/>
-          <defs><marker id="arrow-d2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
-          <rect x="228" y="76" width="150" height="128" rx="8" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
-          <circle cx="248" cy="98" r="5" fill="var(--magenta)"/>
-          <rect x="262" y="94" width="98" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
-          <circle cx="248" cy="120" r="5" fill="var(--cyan)"/>
-          <rect x="262" y="116" width="80" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
-          <circle cx="248" cy="142" r="5" fill="var(--magenta)"/>
-          <rect x="262" y="138" width="90" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
-          <rect x="248" y="164" width="112" height="20" rx="10" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
-          <text x="304" y="178" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">searchable</text>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">05 / 09 — speech</div>
-        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">Meeting RAG Pipeline ↗</a></h3>
-        <p class="proj-desc">Turns Arabic and English video meetings into a searchable, growing knowledge base — every stage runs on your own machine. Audio is diarized to know who spoke when, transcribed with Whisper, embedded with a multilingual model, and stored in a local Qdrant instance that accumulates across meetings. Ask a question and a local LLM retrieves the relevant chunks and writes the answer, or generates full meeting minutes — no cloud API keys anywhere in the pipeline.</p>
-        <div class="tags"><span>Whisper</span><span>pyannote-audio</span><span>Qdrant</span><span>Ollama (Qwen2.5)</span></div>
-        <a class="proj-link" href="https://github.com/ghayth-saleem/meeting-rag-pipeline" target="_blank" rel="noopener">View source →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="A question answered with a citation to a specific scout meeting">
-          <rect x="24" y="110" width="90" height="46" rx="14" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
-          <text x="69" y="139" text-anchor="middle" font-family="ui-monospace,monospace" font-size="20" fill="var(--text-dim)">?</text>
-          <path d="M120 133 L160 133" stroke="var(--line)" stroke-width="2" marker-end="url(#arrow-d3)"/>
-          <defs><marker id="arrow-d3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
-          <rect x="170" y="60" width="200" height="140" rx="14" fill="var(--void-raised)" stroke="var(--cyan)" stroke-width="1.5"/>
-          <g transform="translate(190,84)">
-            <rect x="70" width="90" height="9" rx="3" fill="rgba(255,255,255,0.14)"/>
-            <rect x="40" y="18" width="120" height="9" rx="3" fill="rgba(255,255,255,0.14)"/>
-            <rect x="90" y="36" width="70" height="9" rx="3" fill="rgba(255,255,255,0.14)"/>
-          </g>
-          <rect x="190" y="150" width="130" height="26" rx="13" fill="rgba(109,240,255,0.12)" stroke="var(--cyan)" stroke-width="1"/>
-          <text x="255" y="167" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="var(--cyan)">meeting #14 — Mar 3</text>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">06 / 09 — record</div>
-        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">Al-Fatyan Scout RAG — نظام محاضر الفتيان ↗</a></h3>
-        <p class="proj-desc">A fully offline RAG system built to answer questions over a scout troop's Arabic meeting minutes. Chunking is section-aware — records split on their decisions header so long meetings stay coherent — and a local multilingual embedding model plus a local LLM handle retrieval and generation in Arabic or English. Every answer cites the exact meeting number and date it came from, and the system says plainly when it can't find one instead of guessing. Ships with a Streamlit chat interface.</p>
-        <div class="tags"><span>ChromaDB</span><span>Sentence-Transformers</span><span>Ollama (Qwen2.5)</span><span>Streamlit</span></div>
-        <a class="proj-link" href="https://github.com/ghayth-saleem/rag_system" target="_blank" rel="noopener">View source →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="Dashboard tile with a trend line, bar chart, and anomaly marker">
-          <rect x="30" y="30" width="340" height="220" rx="14" fill="var(--void-raised)" stroke="var(--line)" stroke-width="1.5"/>
-          <polyline points="55,150 100,120 145,160 190,90 235,110 280,70 325,95" fill="none" stroke="var(--cyan)" stroke-width="2.5"/>
-          <circle cx="280" cy="70" r="5" fill="var(--magenta)"/>
-          <g fill="rgba(185,139,255,0.35)">
-            <rect x="55" y="195" width="18" height="35"/><rect x="83" y="180" width="18" height="50"/>
-            <rect x="111" y="205" width="18" height="25"/><rect x="139" y="170" width="18" height="60"/>
-            <rect x="167" y="190" width="18" height="40"/>
-          </g>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">07 / 09 — signal</div>
-        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">INSIGHT_AI — graduation project ↗</a></h3>
-        <p class="proj-desc">A marketing intelligence dashboard that reads raw Instagram analytics exports and surfaces engagement trends, sentiment shifts, and anomalies a human would otherwise have to dig for by hand. A Python/FastAPI backend runs the scoring and evaluation models; a Next.js frontend presents them through a dedicated dark-mode dashboard design system.</p>
-        <div class="tags"><span>FastAPI</span><span>Next.js</span><span>scikit-learn</span></div>
-        <a class="proj-link" href="https://github.com/ghayth-saleem/INSIGHT_AI" target="_blank" rel="noopener">View source →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="Decision threshold moved from 0.5 to 0.25 to favor recall">
-          <polyline points="30,90 60,60 90,110 120,50 150,95 180,70" fill="none" stroke="var(--magenta)" stroke-width="2.5" opacity="0.8"/>
-          <line x1="30" y1="180" x2="370" y2="180" stroke="var(--line)" stroke-width="2"/>
-          <circle cx="200" cy="180" r="7" fill="var(--line)"/>
-          <text x="200" y="205" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="var(--text-dim)">0.50 default</text>
-          <path d="M200 180 L130 180" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow-d4)"/>
-          <defs><marker id="arrow-d4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--cyan)"/></marker></defs>
-          <circle cx="130" cy="180" r="9" fill="var(--cyan)"/>
-          <text x="130" y="205" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="var(--cyan)">0.25 tuned</text>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">08 / 09 — clinic</div>
-        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">Diabetes Prediction Model ↗</a></h3>
-        <p class="proj-desc">A classifier trained on the Pima Indians Diabetes dataset, tuned for a screening context rather than raw accuracy. Missing clinical values are mean-imputed, hyperparameters are searched with GridSearchCV, and the decision threshold is deliberately lowered from 0.5 to 0.25 — trading some false alarms for fewer missed positives, which is the trade a screening tool should make.</p>
-        <div class="tags"><span>scikit-learn</span><span>Random Forest</span><span>GridSearchCV</span></div>
-        <a class="proj-link" href="https://github.com/ghayth-saleem/diabetes-prediction-ml" target="_blank" rel="noopener">View source →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="proj">
-    <div class="proj-inner wrap">
-      <div class="proj-visual">
-        <svg viewBox="0 0 400 280" role="img" aria-label="A camera frame reduced to edges, classified, and turned into a lit LED on a circuit board">
-          <rect x="20" y="60" width="150" height="110" rx="10" fill="var(--void)" stroke="var(--line)" stroke-width="1.5"/>
-          <rect x="34" y="74" width="122" height="82" rx="4" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="3 3"/>
-          <circle cx="95" cy="115" r="26" fill="none" stroke="var(--violet)" stroke-width="2.5"/>
-          <path d="M185 115 L228 115" stroke="var(--violet)" stroke-width="2" marker-end="url(#arrow-d5)"/>
-          <defs><marker id="arrow-d5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--violet)"/></marker></defs>
-          <rect x="240" y="40" width="140" height="150" rx="10" fill="var(--void-raised)" stroke="var(--line)" stroke-width="1.5"/>
-          <rect x="256" y="56" width="108" height="70" rx="4" fill="rgba(109,240,255,0.08)" stroke="var(--cyan)" stroke-width="1"/>
-          <circle cx="310" cy="91" r="18" fill="none" stroke="var(--cyan)" stroke-width="2"/>
-          <circle cx="285" cy="160" r="10" fill="var(--magenta)" opacity="0.9"/>
-          <circle cx="285" cy="160" r="16" fill="none" stroke="var(--magenta)" stroke-width="1.5" opacity="0.4"/>
-          <rect x="316" y="152" width="34" height="16" rx="3" fill="rgba(255,255,255,0.10)"/>
-        </svg>
-      </div>
-      <div class="proj-text">
-        <div class="proj-index">09 / 09 — hardware</div>
-        <h3 class="proj-title"><a href="https://github.com/ghayth-saleem/knn-shape-classifier-arduino" target="_blank" rel="noopener">KNN Shape Classifier + Arduino ↗</a></h3>
-        <p class="proj-desc">A real-time computer vision pipeline that closes the loop from camera to physical hardware. Each frame is converted to grayscale, run through Canny edge detection, and flattened into a pixel vector classified by a KNN model trained to tell squares from circles. The prediction is streamed over serial to an Arduino, which lights a green or yellow LED to match — no cloud, no deep learning, just classical CV and a distance metric running live.</p>
-        <div class="tags"><span>OpenCV</span><span>scikit-learn</span><span>KNN</span><span>Arduino</span><span>Serial I/O</span></div>
-        <a class="proj-link" href="https://github.com/ghayth-saleem/knn-shape-classifier-arduino" target="_blank" rel="noopener">View source →</a>
-      </div>
+    <div>
+      <h3>Learning now</h3>
+      <p>LangChain and .NET.</p>
     </div>
   </div>
 </section>
 
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-label">// stack</div>
-    <h2 class="sec-title">What I build with</h2>
-    <div class="skills-wrap">
-      <span class="pill reveal">Python</span><span class="pill reveal">PyTorch</span><span class="pill reveal">RAG Systems</span>
-      <span class="pill reveal">LLM Integration</span><span class="pill reveal">Deep Learning</span><span class="pill reveal">Prompt Engineering</span>
-      <span class="pill reveal">Claude API</span><span class="pill reveal">FastAPI</span><span class="pill reveal">PostgreSQL</span>
-      <span class="pill reveal">Qdrant</span><span class="pill reveal">Docker</span>
-      <span class="pill reveal">Java</span><span class="pill reveal">C++</span>
-      <span class="pill reveal">learning: LangChain</span><span class="pill reveal">learning: .NET</span>
-    </div>
-  </div>
+<section class="band wrap contact" id="contact">
+  <h2>Open to internships and new roles.</h2>
+  <ul>
+    <li><span>Email</span><a href="mailto:ghayth1216@gmail.com">ghayth1216@gmail.com</a></li>
+    <li><span>Phone</span><a href="tel:+962782978154">+962 78 297 8154</a></li>
+    <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/ghayth-saleem-0032892ba" target="_blank" rel="noopener">ghayth-saleem</a></li>
+    <li><span>GitHub</span><a href="https://github.com/ghayth-saleem" target="_blank" rel="noopener">ghayth-saleem</a></li>
+  </ul>
 </section>
 
-<section id="contact">
-  <div class="wrap">
-    <h2>Available for internships<br>and new opportunities.</h2>
-    <div class="contact-links">
-      <a href="mailto:ghayth1216@gmail.com">ghayth1216@gmail.com</a>
-      <a href="tel:+962782978154">+962 78 297 8154</a>
-      <a href="https://www.linkedin.com/in/ghayth-saleem-0032892ba" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/ghayth-saleem" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-</section>
-
-<footer>© 2026 Ghayth Ahmad Rezeq Saleem. Built with HTML, CSS, and canvas.</footer>
+<footer class="wrap">© 2026 Ghayth Ahmad Rezeq Saleem</footer>
 
 <script>
-  // ---- neural field canvas background ----
-  const canvas = document.getElementById('field');
-  const ctx = canvas.getContext('2d');
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W,H,DPR;
-  function size(){
-    DPR = Math.min(window.devicePixelRatio||1,2);
-    W = window.innerWidth; H = window.innerHeight;
-    canvas.width = W*DPR; canvas.height = H*DPR;
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-  size(); window.addEventListener('resize', size);
-
-  const N = Math.min(90, Math.floor((window.innerWidth*window.innerHeight)/16000));
-  const nodes = Array.from({length:N}, ()=>({
-    x: Math.random()*W, y: Math.random()*H,
-    vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25,
-  }));
-  let mouse = {x:-9999,y:-9999};
-  window.addEventListener('mousemove', e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
-  window.addEventListener('mouseleave', ()=>{ mouse.x=-9999; mouse.y=-9999; });
-
-  function step(){
-    ctx.clearRect(0,0,W,H);
-    nodes.forEach(n=>{
-      n.x += n.vx; n.y += n.vy;
-      if(n.x<0||n.x>W) n.vx*=-1;
-      if(n.y<0||n.y>H) n.vy*=-1;
-      const dx = n.x-mouse.x, dy = n.y-mouse.y;
-      const d = Math.hypot(dx,dy);
-      if(d < 120){ n.x += dx/d*0.6; n.y += dy/d*0.6; }
-    });
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        const a=nodes[i], b=nodes[j];
-        const d = Math.hypot(a.x-b.x, a.y-b.y);
-        if(d < 140){
-          ctx.strokeStyle = `rgba(109,240,255,${0.14*(1-d/140)})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-        }
-      }
-    }
-    nodes.forEach(n=>{
-      ctx.fillStyle = 'rgba(185,139,255,0.55)';
-      ctx.beginPath(); ctx.arc(n.x,n.y,1.8,0,Math.PI*2); ctx.fill();
-    });
-    if(!reduced) requestAnimationFrame(step);
-  }
-  if(reduced){ step(); } else { requestAnimationFrame(step); }
-
-  // ---- scroll reveal (skills pills: reveal once) ----
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('in'), i*40);
-        io.unobserve(e.target);
-      }
-    });
-  }, {threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // ---- project showcase: fade in/out as each project scrolls through ----
-  const projIo = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      e.target.classList.toggle('active', e.intersectionRatio > 0.35);
-    });
-  }, {threshold:[0,0.1,0.2,0.3,0.35,0.4,0.5,0.6,0.75,0.9,1]});
-  document.querySelectorAll('.proj').forEach(el=>projIo.observe(el));
-  if(reduced){ document.querySelectorAll('.proj').forEach(el=>el.classList.add('active')); }
+  // Hovering or focusing a citation lights up its entry in the list and the project it points to.
+  const byN = n => document.querySelectorAll('.refs a[data-n="'+n+'"], .src[data-n="'+n+'"]');
+  document.querySelectorAll('.cite, .refs a').forEach(el => {
+    const on = () => byN(el.dataset.n).forEach(t => t.classList.add('lit'));
+    const off = () => byN(el.dataset.n).forEach(t => t.classList.remove('lit'));
+    el.addEventListener('mouseenter', on); el.addEventListener('mouseleave', off);
+    el.addEventListener('focus', on); el.addEventListener('blur', off);
+  });
 </script>
 </body>
 </html>
